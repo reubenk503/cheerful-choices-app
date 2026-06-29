@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agota Csaszar - Coaching</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@600;700;800&amp;family=Hanken+Grotesk:wght@400&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#b9cac5",
+                    "on-primary-container": "#007162",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed": "#ffdbcf",
+                    "surface-container-high": "#eae8e7",
+                    "tertiary-container": "#e4e4cc",
+                    "on-secondary-container": "#6b1f00",
+                    "on-secondary-fixed-variant": "#822800",
+                    "surface-tint": "#006b5c",
+                    "outline": "#6a7b76",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1b1d0e",
+                    "surface-container-low": "#f6f3f2",
+                    "secondary": "#a43c12",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed": "#380c00",
+                    "inverse-surface": "#303030",
+                    "on-surface-variant": "#3a4a46",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#e4e4cc",
+                    "surface-container": "#f0eded",
+                    "secondary-container": "#fe7e4f",
+                    "on-tertiary-fixed-variant": "#474836",
+                    "primary-fixed-dim": "#00dfc3",
+                    "on-background": "#1b1c1c",
+                    "inverse-primary": "#00dfc3",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#fbf9f8",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-tertiary-container": "#646652",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#01fede",
+                    "on-primary-fixed": "#00201b",
+                    "secondary-fixed-dim": "#ffb59c",
+                    "on-surface": "#1b1c1c",
+                    "tertiary": "#5e604d",
+                    "background": "#fbf9f8",
+                    "on-primary-fixed-variant": "#005045",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface": "#fbf9f8",
+                    "on-primary": "#ffffff",
+                    "primary": "#006b5c",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#00fede",
+                    "surface-dim": "#dcd9d9",
+                    "tertiary-fixed-dim": "#c8c8b0",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "base": "8px",
+                    "container-padding": "64px",
+                    "mobile-margin": "20px",
+                    "column-gap": "32px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "label-caps": [
+                            "Space Grotesk"
+                    ],
+                    "display-xl": [
+                            "Anybody"
+                    ],
+                    "headline-md": [
+                            "Anybody"
+                    ],
+                    "display-xl-mobile": [
+                            "Anybody"
+                    ],
+                    "body-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg-mobile": [
+                            "Anybody"
+                    ],
+                    "headline-lg": [
+                            "Anybody"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-xl": [
+                            "80px",
+                            {
+                                    "lineHeight": "88px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-xl-mobile": [
+                            "48px",
+                            {
+                                    "lineHeight": "52px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "38px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+        }
+        .reveal-text.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .reveal-image {
+            clip-path: inset(100% 0 0 0);
+            transform: scale(0.95);
+            transition: clip-path 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s ease-out;
+        }
+        .reveal-image.active {
+            clip-path: inset(0 0 0 0);
+            transform: scale(1);
+        }
+
+        .btn-shadow {
+            box-shadow: 4px 4px 0px 0px #333333;
+            transition: all 0.2s ease;
+        }
+        .btn-shadow:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #333333;
+        }
+        
+        .card-neo {
+            border: 2px solid #333333;
+            box-shadow: 6px 6px 0px 0px #333333;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-neo:hover {
+            transform: translate(-4px, -4px) rotate(-1deg);
+            box-shadow: 10px 10px 0px 0px #333333;
+        }
+
+        .toggle-switch-input:checked + .toggle-switch-label {
+            background-color: theme('colors.primary-fixed');
+            color: theme('colors.on-primary-fixed');
+            border-color: #333333;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Top Navigation from Shared Components -->
+<nav class="bg-inverse-surface dark:bg-surface-container-highest w-full top-0 sticky border-b-2 border-on-background dark:border-outline-variant flat no shadows z-50">
+<div class="flex justify-between items-center px-container-padding py-base w-full max-w-full mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed dark:text-primary-fixed-dim">Agota Csaszar</div>
+<!-- Desktop Nav Links -->
+<div class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps uppercase text-primary-fixed dark:text-primary-fixed-dim border-b-2 border-primary-fixed pb-1 transition-transform duration-200 hover:-translate-y-1 hover:text-primary-fixed cursor-pointer active:scale-95" href="#">Coaching</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="#">Regulatory</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="#">Development</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="#">Testimonials</a>
+</div>
+<a class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-6 py-2 border-2 border-on-background btn-shadow cursor-pointer active:scale-95 inline-block" href="#">Book Call</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="w-full">
+<!-- Hero Section -->
+<section class="min-h-[819px] flex flex-col md:flex-row items-center px-mobile-margin md:px-container-padding py-section-gap gap-column-gap relative overflow-hidden">
+<div class="md:w-1/2 z-10 flex flex-col gap-6">
+<h1 class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl reveal-text text-on-background leading-tight active">
+                    Mastery <br/> <span class="text-primary-fixed bg-inverse-surface px-4 py-2 inline-block mt-2 -rotate-1 border-2 border-on-background">Accelerated.</span>
+</h1>
+<p class="font-body-lg text-body-lg reveal-text text-on-surface-variant max-w-lg mt-4 active" style="transition-delay: 0.1s;">
+                    Expert tutoring in English, Chemistry, and Mathematics. Designed for ambitious professionals and dedicated students seeking unparalleled academic and corporate excellence.
+                </p>
+<div class="mt-8 reveal-text active" style="transition-delay: 0.2s;">
+<a class="inline-block font-label-caps text-label-caps uppercase bg-primary text-on-primary px-8 py-4 border-2 border-on-background btn-shadow bg-surface-tint duration-500" href="#">
+                        Start Your Journey
+                    </a>
+</div>
+</div>
+<div class="md:w-1/2 w-full h-[500px] relative reveal-image parallax-container active">
+<img class="w-full h-full object-cover border-4 border-on-background shadow-[8px_8px_0px_0px_#333333] parallax-img absolute inset-0" data-alt="A modern, high-contrast digital illustration of a stylized geometric book, abstract chemical bonds, and mathematical symbols merging together. The scene is brightly lit with high-key white lighting, accented by vibrant electric teal and bold red on a clean cream background. The aesthetic is neo-brutalist and highly energetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGeTn3gRYjKK3Ibc81bL7buCS9nZxzOIjvitMxDRfs5Wkm9MJhVnpLrfYc1j12_ToU7d1B6pe-WbfoPVD8eFO3SxpErQ9JRPfc3J78JZ4ows5LVJO_VNZv1pzF8M5Uv0WGwJwCXazFyX8hc_ev8ZKj3Kv1SMQ7B-1pEps81i3TMF1iv-GfFPHbGOhFlsoEDf9gQejrcRoqe70Mce9knAfZj8uafFUgrn33YBdQ8ZvF2hTvCPFXvvYrsaItLT_kdopO_59MsunJKMIF"/>
+<div class="absolute -bottom-8 -left-8 bg-secondary-container p-6 border-2 border-on-background btn-shadow z-20 reveal-text active" style="transition-delay: 0.4s;">
+<p class="font-headline-md text-headline-md text-on-background font-bold">10+ Years</p>
+<p class="font-label-caps text-label-caps text-on-background uppercase">Proven Excellence</p>
+</div>
+</div>
+</section>
+<!-- Offerings Split Section -->
+<section class="px-mobile-margin md:px-container-padding py-section-gap bg-surface-container-low relative">
+<div class="text-center mb-16 reveal-text active">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Tailored Pathways</h2>
+<!-- Custom Toggle Switch -->
+<div class="flex justify-center items-center mt-8 gap-4">
+<span class="font-label-caps text-label-caps uppercase font-bold text-on-background">Corporate</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="offeringToggle" type="checkbox" value=""/>
+<div class="w-16 h-8 bg-inverse-surface peer-focus:outline-none border-2 border-on-background peer peer-checked:after:translate-x-full peer-checked:after:border-on-background after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-primary-fixed after:border-on-background after:border-2 after:h-[24px] after:w-[28px] after:transition-all peer-checked:bg-secondary-container"></div>
+</label>
+<span class="font-label-caps text-label-caps uppercase font-bold text-on-background">Private</span>
+</div>
+</div>
+<!-- Corporate Content -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-column-gap transition-opacity duration-500" id="corporateContent">
+<!-- Card 1 -->
+<div class="card-neo bg-surface p-8 flex flex-col gap-4 reveal-text h-full active">
+<div class="w-12 h-12 bg-primary-fixed border-2 border-on-background flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-background" style="font-variation-settings: 'FILL' 1;">language</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Business English</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Advanced communication strategies, negotiation vocabulary, and executive presence coaching for global markets.</p>
+</div>
+<!-- Card 2 -->
+<div class="card-neo bg-surface-container-high p-8 flex flex-col gap-4 reveal-text h-full active" style="transition-delay: 0.1s;">
+<div class="w-12 h-12 bg-secondary-container border-2 border-on-background flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-background" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Technical Chem</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Specialized terminology and concept review for professionals in pharmaceutical, manufacturing, and R&amp;D sectors.</p>
+</div>
+<!-- Card 3 -->
+<div class="card-neo bg-tertiary-container p-8 flex flex-col gap-4 reveal-text h-full active" style="transition-delay: 0.2s;">
+<div class="w-12 h-12 bg-inverse-surface border-2 border-primary-fixed flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">calculate</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Quantitative Analysis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Mathematical modeling, statistical fundamentals, and data interpretation for corporate decision-makers.</p>
+</div>
+</div>
+<!-- Private Content (Hidden by default) -->
+<div class="hidden grid grid-cols-1 md:grid-cols-3 gap-column-gap transition-opacity duration-500" id="privateContent">
+<!-- Card 1 -->
+<div class="card-neo bg-surface p-8 flex flex-col gap-4 h-full">
+<div class="w-12 h-12 bg-primary-fixed border-2 border-on-background flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-background" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Academic English</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Comprehensive literature analysis, essay structuring, and exam preparation for top-tier academic success.</p>
+</div>
+<!-- Card 2 -->
+<div class="card-neo bg-surface-container-high p-8 flex flex-col gap-4 h-full">
+<div class="w-12 h-12 bg-secondary-container border-2 border-on-background flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-background" style="font-variation-settings: 'FILL' 1;">biotech</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Core Chemistry</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Fundamental to advanced chemical principles, practical application guidance, and rigorous curriculum support.</p>
+</div>
+<!-- Card 3 -->
+<div class="card-neo bg-tertiary-container p-8 flex flex-col gap-4 h-full">
+<div class="w-12 h-12 bg-inverse-surface border-2 border-primary-fixed flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">functions</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Advanced Maths</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Algebra, calculus, and beyond. Building strong foundations and problem-solving skills for high achievers.</p>
+</div>
+</div>
+</section>
+<!-- Booking Interface Section -->
+</main>
+<!-- Footer from Shared Components -->
+<footer class="bg-background dark:bg-surface-dim w-full mt-section-gap border-t-2 border-on-background flat no shadows">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-column-gap px-container-padding py-section-gap w-full max-w-full mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-headline-lg text-headline-lg text-on-background font-bold">Agota Csaszar</span>
+<p class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim">
+                    © 2024 Agota Csaszar. All rights reserved.
+                </p>
+</div>
+<div class="flex flex-wrap gap-8 md:justify-end items-center">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline decoration-2 underline-offset-4 cursor-pointer" href="#">Contact</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline decoration-2 underline-offset-4 cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline decoration-2 underline-offset-4 cursor-pointer" href="#">LinkedIn</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline decoration-2 underline-offset-4 cursor-pointer" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<script>
+        // Intersection Observer for Reveal Animations
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-text, .reveal-image').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Parallax effect on hero image
+            const parallaxContainer = document.querySelector('.parallax-container');
+            const parallaxImg = document.querySelector('.parallax-img');
+            
+            if (parallaxContainer && parallaxImg) {
+                parallaxContainer.addEventListener('mousemove', (e) => {
+                    const rect = parallaxContainer.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const xPercent = (x / rect.width - 0.5) * 20; // Max movement 20px
+                    const yPercent = (y / rect.height - 0.5) * 20;
+                    
+                    parallaxImg.style.transform = `translate(${xPercent}px, ${yPercent}px) scale(1.05)`;
+                });
+
+                parallaxContainer.addEventListener('mouseleave', () => {
+                    parallaxImg.style.transform = 'translate(0, 0) scale(1)';
+                });
+            }
+
+            // Toggle Logic for Offerings
+            const toggle = document.getElementById('offeringToggle');
+            const corpContent = document.getElementById('corporateContent');
+            const privContent = document.getElementById('privateContent');
+
+            if(toggle) {
+                toggle.addEventListener('change', function() {
+                    if(this.checked) {
+                        // Show Private, Hide Corp
+                        corpContent.classList.add('opacity-0');
+                        setTimeout(() => {
+                            corpContent.classList.add('hidden');
+                            privContent.classList.remove('hidden');
+                            // slight delay to allow display block to apply before fading in
+                            setTimeout(() => {
+                                privContent.classList.remove('opacity-0');
+                                privContent.classList.add('opacity-100');
+                            }, 50);
+                        }, 500); // match duration
+                        
+                    } else {
+                        // Show Corp, Hide Private
+                        privContent.classList.remove('opacity-100');
+                        privContent.classList.add('opacity-0');
+                        setTimeout(() => {
+                            privContent.classList.add('hidden');
+                            corpContent.classList.remove('hidden');
+                            setTimeout(() => {
+                                corpContent.classList.remove('opacity-0');
+                            }, 50);
+                        }, 500);
+                    }
+                });
+            }
+        });
+    </script>
+</body></html>
