@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agota Csaszar - Personal Development</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@600;700;800&amp;family=Hanken+Grotesk:wght@400&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-secondary-container": "#6b1f00",
+                "primary": "#006b5c",
+                "on-tertiary": "#ffffff",
+                "secondary": "#a43c12",
+                "outline": "#6a7b76",
+                "on-error-container": "#93000a",
+                "on-surface-variant": "#3a4a46",
+                "on-secondary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "surface-variant": "#e4e2e1",
+                "outline-variant": "#b9cac5",
+                "inverse-on-surface": "#f3f0f0",
+                "surface-container": "#f0eded",
+                "on-error": "#ffffff",
+                "surface-container-low": "#f6f3f2",
+                "on-primary-fixed-variant": "#005045",
+                "on-tertiary-fixed-variant": "#474836",
+                "tertiary-fixed": "#e4e4cc",
+                "secondary-container": "#fe7e4f",
+                "on-tertiary-container": "#646652",
+                "surface": "#fbf9f8",
+                "on-background": "#1b1c1c",
+                "surface-container-high": "#eae8e7",
+                "surface-bright": "#fbf9f8",
+                "inverse-surface": "#303030",
+                "error-container": "#ffdad6",
+                "error": "#ba1a1a",
+                "primary-fixed": "#01fede",
+                "on-secondary-fixed-variant": "#822800",
+                "surface-dim": "#dcd9d9",
+                "primary-fixed-dim": "#00dfc3",
+                "surface-tint": "#006b5c",
+                "tertiary": "#5e604d",
+                "surface-container-highest": "#e4e2e1",
+                "primary-container": "#00fede",
+                "background": "#fbf9f8",
+                "tertiary-fixed-dim": "#c8c8b0",
+                "secondary-fixed": "#ffdbcf",
+                "inverse-primary": "#00dfc3",
+                "on-secondary-fixed": "#380c00",
+                "on-primary-fixed": "#00201b",
+                "tertiary-container": "#e4e4cc",
+                "on-primary-container": "#007162",
+                "secondary-fixed-dim": "#ffb59c",
+                "on-surface": "#1b1c1c",
+                "on-primary": "#ffffff",
+                "on-tertiary-fixed": "#1b1d0e"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-padding": "64px",
+                "base": "8px",
+                "column-gap": "32px",
+                "mobile-margin": "20px",
+                "section-gap": "120px"
+        },
+        "fontFamily": {
+                "body-lg": [
+                        "Hanken Grotesk"
+                ],
+                "headline-md": [
+                        "Anybody"
+                ],
+                "display-xl-mobile": [
+                        "Anybody"
+                ],
+                "body-md": [
+                        "Hanken Grotesk"
+                ],
+                "headline-lg": [
+                        "Anybody"
+                ],
+                "headline-lg-mobile": [
+                        "Anybody"
+                ],
+                "display-xl": [
+                        "Anybody"
+                ],
+                "label-caps": [
+                        "Space Grotesk"
+                ]
+        },
+        "fontSize": {
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-xl-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "52px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "38px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "display-xl": [
+                        "80px",
+                        {
+                                "lineHeight": "88px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "label-caps": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Base Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Stagger Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Staggered Text Reveal (Word by Word/Line by Line setup) */
+        .stagger-container .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .stagger-container.active .stagger-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Navbar Nav Links Underline - Animated */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: theme('colors.primary-fixed');
+            transition: width 0.3s ease-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Material Icons */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Smooth Navbar Transition */
+        #navbar {
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #navbar.scrolled {
+            background-color: rgba(48, 48, 48, 0.85); /* inverse-surface with opacity */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-bottom-color: transparent;
+        }
+        .dark #navbar.scrolled {
+            background-color: rgba(228, 226, 225, 0.85); /* surface-container-highest */
+        }
+        
+        /* Card Image Hover */
+        .card-image-container {
+            overflow: hidden;
+        }
+        .card-image-container img {
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .group:hover .card-image-container img {
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu Stagger */
+        #mobile-menu a {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #mobile-menu.open a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #mobile-menu.open a:nth-child(1) { transition-delay: 50ms; }
+        #mobile-menu.open a:nth-child(2) { transition-delay: 100ms; }
+        #mobile-menu.open a:nth-child(3) { transition-delay: 150ms; }
+        #mobile-menu.open a:nth-child(4) { transition-delay: 200ms; }
+        #mobile-menu.open a:nth-child(5) { transition-delay: 250ms; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky z-50 border-b-2 border-on-background dark:border-outline-variant bg-inverse-surface dark:bg-surface-container-highest" id="navbar">
+<div class="flex justify-between items-center px-mobile-margin md:px-container-padding py-4 w-full max-w-[1440px] mx-auto">
+<!-- Brand -->
+<a class="font-headline-md text-headline-md font-bold text-primary-fixed dark:text-primary-fixed-dim shrink-0 transition-opacity hover:opacity-80" href="/">
+                Agota Csaszar
+            </a>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-colors duration-300" data-en="Coaching" data-hu="Coaching" href="/coaching">Coaching</a>
+<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-colors duration-300" data-en="Regulatory" data-hu="Szabályozási" href="#">Regulatory</a>
+<!-- Active Item -->
+<a class="nav-link active font-label-caps text-label-caps uppercase text-primary-fixed dark:text-primary-fixed-dim transition-colors duration-300" data-en="Development" data-hu="Fejlődés" href="#">Development</a>
+<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-colors duration-300" data-en="Testimonials" data-hu="Vélemények" href="#">Testimonials</a>
+</nav>
+<!-- Trailing Action -->
+<div class="hidden md:flex items-center gap-6">
+<div class="flex items-center gap-2 font-label-caps text-label-caps text-surface-variant dark:text-on-surface-variant">
+<button class="lang-btn active hover:text-primary-fixed transition-colors" data-lang="en">EN</button>
+<span>/</span>
+<button class="lang-btn hover:text-primary-fixed transition-colors" data-lang="hu">HU</button>
+</div>
+<div class="relative group cursor-pointer active:scale-95 transition-transform duration-300">
+<div class="absolute inset-0 bg-on-background translate-x-1 translate-y-1 border-2 border-on-background transition-transform duration-300 group-hover:translate-x-1.5 group-hover:translate-y-1.5"></div>
+<a class="relative bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-on-background transition-transform duration-300 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 inline-block" data-en="Book Call" data-hu="Hívás Foglalása" href="/book">Book Call</a>
+</div>
+</div>
+<!-- Mobile Menu Toggle -->
+<div class="md:hidden flex items-center gap-4">
+<div class="flex items-center gap-2 font-label-caps text-label-caps text-surface-variant dark:text-on-surface-variant">
+<button class="lang-btn active" data-lang="en">EN</button>
+<span>/</span>
+<button class="lang-btn" data-lang="hu">HU</button>
+</div>
+<button class="text-primary-fixed p-2 transition-transform duration-300 active:scale-90" id="mobile-menu-btn">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Navigation -->
+<div class="hidden md:hidden bg-inverse-surface dark:bg-surface-container-highest border-b-2 border-on-background px-mobile-margin py-4 space-y-4" id="mobile-menu">
+<a class="block font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors" data-en="Coaching" data-hu="Coaching" href="/coaching">Coaching</a>
+<a class="block font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors" data-en="Regulatory" data-hu="Szabályozási" href="#">Regulatory</a>
+<a class="block font-label-caps text-label-caps uppercase text-primary-fixed transition-colors" data-en="Development" data-hu="Fejlődés" href="#">Development</a>
+<a class="block font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors" data-en="Testimonials" data-hu="Vélemények" href="#">Testimonials</a>
+<a class="block w-full text-center bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-on-background mt-4" data-en="Book Call" data-hu="Hívás Foglalása" href="/book">Book Call</a>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="px-mobile-margin md:px-container-padding py-section-gap relative" id="hero">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-column-gap items-end">
+<div class="md:col-span-8 z-10">
+<h1 class="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-on-background uppercase leading-tight stagger-container reveal-up">
+<span class="inline-block stagger-item" data-en="Inner" data-hu="Belső" style="transition-delay: 0.1s;">Inner</span>
+<span class="inline-block stagger-item" data-en="Architecture." data-hu="Építészet." style="transition-delay: 0.2s;">Architecture.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-6 md:w-3/4 reveal-up delay-200" data-en="Professional, grounded techniques to reshape your internal landscape. Moving beyond mystical clichés into structured methodologies for mental clarity, historical integration, and energetic recalibration." data-hu="Professzionális, megalapozott technikák belső tájképed átformálására. Túl a misztikus közhelyeken, strukturált módszertanok a mentális tisztaság, a történelmi integráció és az energetikai újrakalibrálás felé.">
+                        Professional, grounded techniques to reshape your internal landscape. Moving beyond mystical clichés into structured methodologies for mental clarity, historical integration, and energetic recalibration.
+                    </p>
+</div>
+<div class="md:col-span-4 mt-8 md:mt-0 flex justify-start md:justify-end reveal-up delay-300">
+<div class="relative inline-block group cursor-default">
+<div class="absolute inset-0 bg-on-background translate-x-2 translate-y-2 transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
+<div class="relative bg-surface border-2 border-on-background p-6 z-10 transition-transform duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-secondary text-4xl mb-2 icon-fill">psychiatry</span>
+<h3 class="font-headline-md text-headline-md" data-en="Begin" data-hu="Kezdés">Begin</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2" data-en="Explore the modalities below to find your starting point." data-hu="Fedezze fel az alábbi módszereket, hogy megtalálja a kiindulópontot.">Explore the modalities below to find your starting point.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Modalities Bento Grid -->
+<section class="px-mobile-margin md:px-container-padding pb-section-gap" id="modalities">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-column-gap md:gap-y-section-gap">
+<!-- Meditation (Left heavy) -->
+<article class="md:col-span-7 flex flex-col md:flex-row gap-8 items-stretch group cursor-pointer">
+<div class="w-full md:w-1/2 relative h-64 md:h-auto border-2 border-on-background card-image-container reveal-scale">
+<img class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A serene, modern interior space designed for meditation. Soft, natural sunlight filters through sheer curtains, illuminating clean architectural lines and a minimalist arrangement of comfortable floor cushions. The color palette features warm creams, subtle teal accents, and deep charcoal structural elements. The aesthetic is contemporary, professional, and calming, completely devoid of mystical cliches, focusing instead on mental clarity and grounded presence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo6K9VS2aNc4hZ-hHYA1snTVGtytpl71u_Qeoz4y-xfIn8IBk2fXUz7zwIIIMuaMHHXKIwszNuhlWWz6eIAo5oRdCSFGG5Jjx96zr1wS9OPGPLnRfz9AkR7Kg5oJLlfKwqND_oxru3aTi5C1sCohiJVxkDHVjGZyofcyrvzeceKkCaQ9PxWGycO5LiglPxlN77sDwfB4y25VbNaS1g6uRIkC8HUcZ74H-2tWkJ4AIUDGqGDnJwP6iL-yY81sy2PkKQkzupijNIyPnF"/>
+</div>
+<div class="w-full md:w-1/2 flex flex-col justify-center reveal-up delay-100">
+<div class="bg-tertiary-container border-2 border-on-background p-8 relative h-full flex flex-col">
+<div class="absolute inset-0 bg-on-background translate-x-2 translate-y-2 -z-10 transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
+<span class="font-label-caps text-label-caps text-on-tertiary-container uppercase mb-4 tracking-widest" data-en="01. Modality" data-hu="01. Módszer">01. Modality</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background mb-4" data-en="Meditation" data-hu="Meditáció">Meditation</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow" data-en="Structured stillness. A pragmatic approach to observing the mind, reducing cognitive load, and enhancing executive function through grounded, breath-focused techniques." data-hu="Strukturált csendesség. Pragmatikus megközelítés az elme megfigyeléséhez, a kognitív terhelés csökkentéséhez és a végrehajtó funkciók javításához megalapozott, légzésközpontú technikákon keresztül.">
+                                Structured stillness. A pragmatic approach to observing the mind, reducing cognitive load, and enhancing executive function through grounded, breath-focused techniques.
+                            </p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-on-background uppercase group-hover:text-secondary transition-colors" data-en="Learn More" data-hu="Tudjon meg többet" href="#">
+                                Learn More <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Past Life Regression (Right offset) -->
+<article class="md:col-span-8 md:col-start-5 flex flex-col-reverse md:flex-row gap-8 items-stretch group cursor-pointer">
+<div class="w-full md:w-3/5 flex flex-col justify-center reveal-up">
+<div class="bg-surface-bright border-2 border-on-background p-8 relative h-full flex flex-col">
+<div class="absolute inset-0 bg-on-background translate-x-2 translate-y-2 -z-10 transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4 tracking-widest" data-en="02. Modality" data-hu="02. Módszer">02. Modality</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background mb-4" data-en="Past Life Regression" data-hu="Előző Életes Regresszió">Past Life Regression</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow" data-en="Narrative therapy through deep subconscious access. Whether viewed literally or metaphorically, uncovering deeply rooted somatic memories provides profound shifts in current behavioral patterns." data-hu="Narratív terápia a mély tudatalatti hozzáférésen keresztül. Akár szó szerint, akár metaforikusan nézzük, a mélyen gyökerező szomatikus emlékek feltárása mélyreható elmozdulásokat eredményez a jelenlegi viselkedési mintákban.">
+                                Narrative therapy through deep subconscious access. Whether viewed literally or metaphorically, uncovering deeply rooted somatic memories provides profound shifts in current behavioral patterns.
+                            </p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-on-background uppercase group-hover:text-secondary transition-colors" data-en="Explore" data-hu="Felfedezés" href="#">
+                                Explore <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="w-full md:w-2/5 relative h-64 md:h-auto border-2 border-on-background card-image-container reveal-scale delay-100">
+<img class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A professional, brightly lit consultation room with a comfortable, sleek modern lounge chair. The environment feels safe and clinical yet inviting, utilizing expansive white space and warm cream walls. A large abstract painting featuring soft geometric shapes in coral and teal hangs on the wall. The lighting is high-key and soft. The overall mood is deeply introspective, trustworthy, and grounded in modern therapeutic practices rather than esoteric imagery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvAX9fZDl6BnYhbjapOzTLEGexH2XbqG7pu3w25V8Kjbc_pWy_pQUHBNu3p2WFa_XB1KgkXeMdsL55dYFQgdAJOuNNbfumyrslkh8_OLtTsuQxjcioNY8lr6o0NR8nN1R_4WKneQ-TZJRkHRc-zmLuZZ9Nwr0vIuco1qOBFvFCigP69PS9gYZhS9CQynbnjNSxLaOSqWr62vezJq825SWE6x6w5b6SGez950G4lQPV1M1KVYrwQ7Z5hl4fqDyzVtwezK7kJP0bvBuD"/>
+</div>
+</article>
+<!-- Theta Healing (Center impact) -->
+<article class="md:col-span-10 md:col-start-2 flex flex-col md:flex-row gap-0 mt-8 border-2 border-on-background relative group cursor-pointer reveal-up delay-100">
+<div class="absolute inset-0 bg-on-background translate-x-3 translate-y-3 -z-10 transition-transform duration-300 group-hover:translate-x-4 group-hover:translate-y-4"></div>
+<div class="w-full md:w-1/2 p-8 md:p-12 bg-secondary-fixed flex flex-col justify-center border-b-2 md:border-b-0 md:border-r-2 border-on-background z-10 bg-opacity-95">
+<span class="font-label-caps text-label-caps text-on-secondary-fixed-variant uppercase mb-4 tracking-widest" data-en="03. Modality" data-hu="03. Módszer">03. Modality</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background mb-4" data-en="Theta Healing" data-hu="Theta Healing">Theta Healing</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8" data-en="A rapid, conscious reprogramming of limiting beliefs. By accessing the Theta brainwave state, we bypass the critical faculty of the mind to implement immediate, structural changes to your psychological baseline." data-hu="A korlátozó hiedelmek gyors, tudatos átprogramozása. A Theta agyhullám állapot elérésével megkerüljük az elme kritikus képességét, hogy azonnali, strukturális változásokat hajtsunk végre a pszichológiai alapvonalán.">
+                            A rapid, conscious reprogramming of limiting beliefs. By accessing the Theta brainwave state, we bypass the critical faculty of the mind to implement immediate, structural changes to your psychological baseline.
+                        </p>
+<div>
+<button class="bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps uppercase px-8 py-4 border-2 border-on-background hover:bg-secondary transition-colors inline-flex items-center gap-2">
+<span data-en="Detail Overview" data-hu="Részletes Áttekintés">Detail Overview</span> <span class="material-symbols-outlined icon-fill">arrow_outward</span>
+</button>
+</div>
+</div>
+<div class="w-full md:w-1/2 relative h-80 md:h-auto bg-surface card-image-container z-0 reveal-scale delay-200">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="An abstract, high-resolution digital illustration representing neural pathways and mental clarity. Crisp, sharp-edged geometric forms in vibrant electric teal and warm coral overlap against a stark white background. The composition is highly asymmetric and dynamic, utilizing a neo-brutalist graphic design style with distinct black outlines around the shapes. The mood conveys energetic shifts, focused professional development, and modern psychological breakthroughs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF-M59v8ySnq4zRVIvI5Xjhx9_jlP-NpKYX1pYEHqASuSfMJS7I4YdzLqzRNEY48vvFuppGmaJTp_fmo5GR0ClzvKEgREaZMfRrz-QXTpmvxXG5VfHDEL6Zj12UrChIQu7ox640nRAMroO7bq3sJ3yqdsmY9EWrDH2tMSwX9I4y4dnO77dd5CNU3OunYi-jIj74aOLAOMQQ2YUOVfKMAUvzuEQ5sXvKmOGNtSHdVK23yctwzh5P4BcCxyWNWcX49pJirfDgMfmBn7t"/>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap border-t-2 border-on-background bg-background dark:bg-surface-dim reveal-up">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-column-gap px-mobile-margin md:px-container-padding py-section-gap w-full max-w-[1440px] mx-auto">
+<!-- Brand / Copyright -->
+<div class="flex flex-col justify-between">
+<div class="font-headline-lg text-headline-lg text-on-background mb-8">
+                    Agota Csaszar
+                </div>
+<div class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim" data-en="© 2024 Agota Csaszar. All rights reserved." data-hu="© 2024 Agota Csaszar. Minden jog fenntartva.">
+                    © 2024 Agota Csaszar. All rights reserved.
+                </div>
+</div>
+<!-- Links -->
+<div class="flex flex-col md:items-end justify-end gap-4">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline decoration-2 underline-offset-4" data-en="Contact" data-hu="Kapcsolat" href="#">Contact</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline decoration-2 underline-offset-4" data-en="Privacy Policy" data-hu="Adatvédelmi Szabályzat" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline decoration-2 underline-offset-4" href="#">LinkedIn</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline decoration-2 underline-offset-4" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<script>
+        // Language Toggle System
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = 'en';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-en]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${lang}`);
+                } else if (el.childNodes.length > 0 && el.childNodes[0].nodeType === 3) {
+                     // Check if it's mostly text content
+                     el.textContent = el.getAttribute(`data-${lang}`);
+                } else {
+                     el.innerHTML = el.getAttribute(`data-${lang}`);
+                }
+            });
+
+            langBtns.forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('text-primary-fixed', 'font-bold');
+                    btn.classList.remove('text-surface-variant', 'dark:text-on-surface-variant');
+                } else {
+                    btn.classList.remove('text-primary-fixed', 'font-bold');
+                    btn.classList.add('text-surface-variant', 'dark:text-on-surface-variant');
+                }
+            });
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const lang = e.target.dataset.lang;
+                updateLanguage(lang);
+            });
+        });
+
+        // Initialize language state
+        updateLanguage(currentLang);
+
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ScrollSpy for Active Nav Link
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Very simplified scrollspy for this specific layout since sections aren't strictly mapped to nav items
+            if(window.scrollY < 100) {
+                 navLinks.forEach(l => l.classList.remove('active'));
+                 navLinks[2].classList.add('active'); // default Development
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            if(mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => mobileMenu.classList.add('open'), 10);
+            } else {
+                mobileMenu.classList.remove('open');
+                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // For stagger containers, activate children immediately via CSS
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale, .stagger-container');
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body></html>
