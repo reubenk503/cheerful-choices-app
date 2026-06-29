@@ -368,4 +368,35 @@
     window.addEventListener('scroll', reveal);
     reveal(); // Trigger on load
 </script>
+
+<!-- Global language toggle -->
+<div id="global-lang-toggle" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;gap:4px;background:#1a1a1a;color:#fff;border:2px solid #000;border-radius:9999px;padding:6px 10px;font-family:sans-serif;font-size:12px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.25);user-select:none;">
+  <button type="button" data-glang="en" style="background:transparent;color:inherit;border:none;cursor:pointer;padding:4px 8px;border-radius:9999px;opacity:.55;">EN</button>
+  <button type="button" data-glang="hu" style="background:transparent;color:inherit;border:none;cursor:pointer;padding:4px 8px;border-radius:9999px;opacity:.55;">HU</button>
+</div>
+<script>
+(function(){
+  var KEY='siteLang';
+  function apply(lang){
+    document.querySelectorAll('[data-en][data-hu]').forEach(function(el){
+      var v=el.getAttribute('data-'+lang); if(v!=null) el.textContent=v;
+    });
+    document.documentElement.setAttribute('lang',lang);
+    document.querySelectorAll('#global-lang-toggle [data-glang]').forEach(function(b){
+      b.style.opacity = b.getAttribute('data-glang')===lang ? '1' : '.55';
+      b.style.background = b.getAttribute('data-glang')===lang ? 'rgba(255,255,255,.18)' : 'transparent';
+    });
+    try{localStorage.setItem(KEY,lang);}catch(e){}
+  }
+  var saved='en'; try{saved=localStorage.getItem(KEY)||'en';}catch(e){}
+  function init(){
+    document.querySelectorAll('#global-lang-toggle [data-glang]').forEach(function(b){
+      b.addEventListener('click',function(){apply(b.getAttribute('data-glang'));});
+    });
+    apply(saved);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>
+
 </body></html>
