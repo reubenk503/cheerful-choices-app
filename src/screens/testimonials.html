@@ -170,38 +170,29 @@
             max-height: 300px;
             opacity: 1;
         }
+            .btn-shadow {
+            box-shadow: 4px 4px 0px 0px #333333;
+            transition: all 0.2s ease;
+        }
+        .btn-shadow:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #333333;
+        }
     </style>
 </head>
 <body class="bg-background text-on-background antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- Top Navigation Anchor -->
-<nav class="bg-inverse-surface w-full top-0 sticky border-b-2 border-on-background z-50 transition-all duration-300 ease-out" id="navbar">
-<div class="flex justify-between items-center px-6 py-4 w-full max-w-full mx-auto hidden md:flex">
-<a class="font-headline-md text-headline-md font-bold text-primary-fixed uppercase tracking-tight" href="#">Agota Csaszar</a>
-<div class="flex gap-4 items-center">
-<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors duration-200 cursor-pointer" href="/coaching" data-en="Coaching" data-hu="Coaching">Coaching</a>
-<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors duration-200 cursor-pointer" href="/regulatory" data-en="Regulatory" data-hu="Szabályozási">Regulatory</a>
-<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors duration-200 cursor-pointer" href="/development" data-en="Development" data-hu="Fejlődés">Development</a>
-<a class="nav-link active font-label-caps text-label-caps uppercase text-primary-fixed cursor-pointer" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
+<nav class="bg-inverse-surface dark:bg-surface-container-highest w-full top-0 sticky border-b-2 border-on-background dark:border-outline-variant flat no shadows z-50">
+<div class="flex justify-between items-center px-6 py-base w-full max-w-full mx-auto">
+<div class="font-headline-md text-2xl font-bold text-surface-variant dark:text-on-surface-variant">Agota Csaszar</div>
+<!-- Desktop Nav Links -->
+<div class="hidden md:flex gap-4">
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant transition-transform duration-200 hover:-translate-y-1 hover:text-primary-fixed cursor-pointer active:scale-95" href="/coaching" data-en="Coaching" data-hu="Coaching">Coaching</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="/regulatory" data-en="Regulatory" data-hu="Szabályozási">Regulatory</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="/development" data-en="Development" data-hu="Fejlődés">Development</a>
+<a class="font-label-caps text-label-caps uppercase text-primary-fixed dark:text-primary-fixed-dim border-b-2 border-primary-fixed pb-1 transition-transform duration-200 hover:-translate-y-1 hover:text-primary-fixed cursor-pointer active:scale-95" href="/testimonials" data-en="Testimonials" data-hu="Vélemények"><span class="border-b-2 border-primary-fixed pb-1 inline-block">Testimonials</span></a>
 </div>
-<a class="bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-on-background neo-shadow transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95 inline-block" href="/book" data-en="Book Call" data-hu="Hívás Foglalása">Book Call</a>
-</div>
-<!-- Mobile Nav -->
-<div class="flex flex-col w-full md:hidden">
-<div class="flex justify-between items-center px-mobile-margin py-4 w-full">
-<a class="font-headline-md text-headline-md font-bold text-primary-fixed uppercase tracking-tight" href="#">Agota Csaszar</a>
-<button class="text-primary-fixed p-2 border-2 border-on-background bg-inverse-surface neo-shadow-sm transition-transform active:scale-95" id="mobile-menu-btn">
-<i data-lucide="menu"></i>
-</button>
-</div>
-<div class="bg-inverse-surface border-b-2 border-on-background px-mobile-margin" id="mobile-menu">
-<div class="flex flex-col gap-4 py-4">
-<a class="font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors" href="/coaching" data-en="Coaching" data-hu="Coaching">Coaching</a>
-<a class="font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors" href="/regulatory" data-en="Regulatory" data-hu="Szabályozási">Regulatory</a>
-<a class="font-label-caps text-label-caps uppercase text-surface-variant hover:text-primary-fixed transition-colors" href="/development" data-en="Development" data-hu="Fejlődés">Development</a>
-<a class="font-label-caps text-label-caps uppercase text-primary-fixed" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
-<a class="bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-on-background text-center mt-2" href="/book" data-en="Book Call" data-hu="Hívás Foglalása">Book Call</a>
-</div>
-</div>
+<a class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-6 py-2 border-2 border-on-background btn-shadow cursor-pointer active:scale-95 inline-block" href="/book" data-en="Book Call" data-hu="Hívás Foglalása">Book Call</a>
 </div>
 </nav>
 <main class="w-full overflow-hidden">

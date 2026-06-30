@@ -304,37 +304,17 @@
     </style>
 </head><body class="bg-background text-on-background font-body-md overflow-x-hidden">
 <!-- Top Navigation from Shared Components -->
-<nav class="bg-inverse-surface dark:bg-surface-container-highest w-full top-0 sticky border-b-2 border-on-background dark:border-outline-variant flat no shadows z-50" id="navbar">
-<div class="flex justify-between items-center px-6 py-4 w-full max-w-full mx-auto">
-<a class="font-headline-md text-headline-md font-bold text-primary-fixed dark:text-primary-fixed-dim" href="#">Agota Csaszar</a>
-<!-- Mobile menu button -->
-<div class="md:hidden flex items-center">
-<button class="text-primary-fixed dark:text-primary-fixed-dim hover:text-white focus:outline-none" id="mobile-menu-btn">
-<span class="material-symbols-outlined text-3xl">menu</span>
-</button>
-</div>
+<nav class="bg-inverse-surface dark:bg-surface-container-highest w-full top-0 sticky border-b-2 border-on-background dark:border-outline-variant flat no shadows z-50">
+<div class="flex justify-between items-center px-6 py-base w-full max-w-full mx-auto">
+<div class="font-headline-md text-2xl font-bold text-surface-variant dark:text-on-surface-variant">Agota Csaszar</div>
 <!-- Desktop Nav Links -->
-<div class="hidden md:flex gap-4 items-center">
-<a class="nav-link active font-label-caps text-label-caps uppercase text-primary-fixed dark:text-primary-fixed-dim transition-colors duration-200 cursor-pointer" href="/coaching" data-en="Coaching" data-hu="Coaching">Coaching</a>
-<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-colors duration-200 cursor-pointer" href="/regulatory" data-en="Regulatory" data-hu="Szabályozási">Regulatory</a>
-<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-colors duration-200 cursor-pointer" href="/development" data-en="Development" data-hu="Fejlődés">Development</a>
-<a class="nav-link font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-colors duration-200 cursor-pointer" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
-<button class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-6 py-2 border-2 border-on-background btn-shadow cursor-pointer active:scale-95 ml-4" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})" data-en="Book Call" data-hu="Hívás Foglalása">
-                Book Call
-            </button>
+<div class="hidden md:flex gap-4">
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant transition-transform duration-200 hover:-translate-y-1 hover:text-primary-fixed cursor-pointer active:scale-95" href="/coaching" data-en="Coaching" data-hu="Coaching">Coaching</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="/regulatory" data-en="Regulatory" data-hu="Szabályozási">Regulatory</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="/development" data-en="Development" data-hu="Fejlődés">Development</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
 </div>
-</div>
-<!-- Mobile Menu Panel -->
-<div class="md:hidden bg-inverse-surface dark:bg-surface-container-highest border-b-2 border-on-background absolute w-full left-0" id="mobile-menu">
-<div class="px-container-padding py-4 flex flex-col gap-4">
-<a class="font-label-caps text-label-caps uppercase text-primary-fixed dark:text-primary-fixed-dim py-2" href="/coaching" data-en="Coaching" data-hu="Coaching">Coaching</a>
-<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed py-2" href="/regulatory" data-en="Regulatory" data-hu="Szabályozási">Regulatory</a>
-<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed py-2" href="/development" data-en="Development" data-hu="Fejlődés">Development</a>
-<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed py-2" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
-<button class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-6 py-2 border-2 border-on-background btn-shadow cursor-pointer w-full mt-2" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'}); document.getElementById('mobile-menu').classList.remove('open');" data-en="Book Call" data-hu="Hívás Foglalása">
-            Book Call
-        </button>
-</div>
+<a class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-6 py-2 border-2 border-on-background btn-shadow cursor-pointer active:scale-95 inline-block" href="/book" data-en="Book Call" data-hu="Hívás Foglalása">Book Call</a>
 </div>
 </nav>
 <!-- Main Content Area -->
