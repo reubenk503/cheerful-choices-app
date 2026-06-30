@@ -14,7 +14,7 @@ export const Route = createFileRoute("/development")({
 function ScreenFrame() {
   return (
     <iframe
-      srcDoc={html}
+      srcDoc={html.replace(/<head>/i, "<head><base target=\"_top\">")}
       title="Personal Development"
       style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: "none" }}
     />

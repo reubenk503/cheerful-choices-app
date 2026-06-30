@@ -14,7 +14,7 @@ export const Route = createFileRoute("/book")({
 function ScreenFrame() {
   return (
     <iframe
-      srcDoc={html}
+      srcDoc={html.replace(/<head>/i, "<head><base target=\"_top\">")}
       title="Book a Call"
       style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: "none" }}
     />
