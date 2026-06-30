@@ -454,4 +454,18 @@
 })();
 </script>
 
+
+<script>
+(function(){
+  function showContent(){
+    document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-text, .reveal-image, .fade-in-up, .fade-in-scale, .stagger-container').forEach(function(el){
+      el.classList.add('active');
+      el.classList.add('visible');
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showContent); else showContent();
+  window.addEventListener('load', showContent);
+})();
+</script>
+
 </body></html>

@@ -372,13 +372,15 @@
 
             // Navbar scroll effect
             const nav = document.getElementById('main-nav');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
-                    nav.classList.add('nav-scrolled');
-                } else {
-                    nav.classList.remove('nav-scrolled');
-                }
-            });
+            if (nav) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 20) {
+                        nav.classList.add('nav-scrolled');
+                    } else {
+                        nav.classList.remove('nav-scrolled');
+                    }
+                });
+            }
         });
     </script>
 
@@ -409,6 +411,20 @@
     apply(saved);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>
+
+
+<script>
+(function(){
+  function showContent(){
+    document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-text, .reveal-image, .fade-in-up, .fade-in-scale, .stagger-container').forEach(function(el){
+      el.classList.add('active');
+      el.classList.add('visible');
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showContent); else showContent();
+  window.addEventListener('load', showContent);
 })();
 </script>
 
