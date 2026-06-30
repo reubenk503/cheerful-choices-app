@@ -319,19 +319,23 @@
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-    });
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+    }
 
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            navbar.classList.add('nav-scrolled');
-        } else {
-            navbar.classList.remove('nav-scrolled');
-        }
-    });
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+    }
 
     // Reveal animations on scroll
     function reveal() {
@@ -387,6 +391,20 @@
     apply(saved);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>
+
+
+<script>
+(function(){
+  function showContent(){
+    document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-text, .reveal-image, .fade-in-up, .fade-in-scale, .stagger-container').forEach(function(el){
+      el.classList.add('active');
+      el.classList.add('visible');
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showContent); else showContent();
+  window.addEventListener('load', showContent);
 })();
 </script>
 

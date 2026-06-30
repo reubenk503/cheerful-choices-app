@@ -446,13 +446,15 @@
 
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
 
         // ScrollSpy for Active Nav Link
         const sections = document.querySelectorAll('section[id]');
@@ -469,7 +471,7 @@
             });
 
             // Very simplified scrollspy for this specific layout since sections aren't strictly mapped to nav items
-            if(window.scrollY < 100) {
+            if(window.scrollY < 100 && navLinks.length > 2) {
                  navLinks.forEach(l => l.classList.remove('active'));
                  navLinks[2].classList.add('active'); // default Development
             }
@@ -479,15 +481,17 @@
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            if(mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('hidden');
-                setTimeout(() => mobileMenu.classList.add('open'), 10);
-            } else {
-                mobileMenu.classList.remove('open');
-                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
-            }
-        });
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                if(mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.remove('hidden');
+                    setTimeout(() => mobileMenu.classList.add('open'), 10);
+                } else {
+                    mobileMenu.classList.remove('open');
+                    setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                }
+            });
+        }
 
         // Intersection Observer for scroll animations
         document.addEventListener('DOMContentLoaded', () => {
@@ -539,6 +543,20 @@
     apply(saved);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>
+
+
+<script>
+(function(){
+  function showContent(){
+    document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-text, .reveal-image, .fade-in-up, .fade-in-scale, .stagger-container').forEach(function(el){
+      el.classList.add('active');
+      el.classList.add('visible');
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showContent); else showContent();
+  window.addEventListener('load', showContent);
 })();
 </script>
 
