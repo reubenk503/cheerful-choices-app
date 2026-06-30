@@ -8,4 +8,15 @@ export const Route = createFileRoute("/regulatory")({
         new Response(html, { headers: { "content-type": "text/html; charset=utf-8" } }),
     },
   },
+  component: ScreenFrame,
 });
+
+function ScreenFrame() {
+  return (
+    <iframe
+      srcDoc={html.replace(/<head>/i, "<head><base target=\"_top\">")}
+      title="Regulatory & Medical Writing"
+      style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: "none" }}
+    />
+  );
+}
