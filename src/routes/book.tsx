@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import html from "../screens/book.html?raw";
 
 export const Route = createFileRoute("/book")({
@@ -12,11 +13,11 @@ export const Route = createFileRoute("/book")({
 });
 
 function ScreenFrame() {
-  return (
-    <iframe
-      srcDoc={html.replace(/<head>/i, "<head><base target=\"_top\">")}
-      title="Book a Call"
-      style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: "none" }}
-    />
-  );
+  useEffect(() => {
+    document.open();
+    document.write(html.replace(/<head>/i, "<head><base target=\"_self\">"));
+    document.close();
+  }, []);
+
+  return <div style={{ minHeight: "100vh", background: "#fbf9f8" }} />;
 }
