@@ -420,7 +420,7 @@
 
             document.querySelectorAll('.service-card').forEach(btn => {
                 const label = btn.querySelector('span.font-headline-md');
-                if (label && label.textContent.trim() === bookingData.service) {
+                if (label && label.getAttribute('data-en') === bookingData.service) {
                     btn.classList.add('selected-cyan');
                 } else {
                     btn.classList.remove('selected-cyan');
