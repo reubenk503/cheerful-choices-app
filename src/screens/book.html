@@ -372,34 +372,78 @@
         // Booking State
         let bookingData = {
             type: 'Corporate',
-            service: 'English',
-            date: 'Oct 16, 2024',
-            time: '01:00 PM'
+            service: '',
+            date: '',
+            time: ''
         };
+
+        try {
+            const saved = localStorage.getItem('bookingData');
+            if (saved) bookingData = JSON.parse(saved);
+        } catch (e) {}
+
+        function persistBooking() {
+            try { localStorage.setItem('bookingData', JSON.stringify(bookingData)); } catch (e) {}
+        }
 
         function setBookingData(key, value) {
             bookingData[key] = value;
+            persistBooking();
         }
 
         function updateServiceUI(selectedBtn) {
-            document.querySelectorAll('.service-card').forEach(btn => btn.classList.remove('bg-primary-fixed'));
-            selectedBtn.classList.add('bg-primary-fixed');
+            document.querySelectorAll('.service-card').forEach(btn => btn.classList.remove('selected-cyan'));
+            selectedBtn.classList.add('selected-cyan');
         }
 
         function updateDateUI(selectedBtn) {
-            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('bg-primary-fixed'));
-            selectedBtn.classList.add('bg-primary-fixed');
+            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('selected-cyan'));
+            selectedBtn.classList.add('selected-cyan');
         }
 
         function updateTimeUI(selectedBtn) {
-            document.querySelectorAll('.time-btn').forEach(btn => btn.classList.remove('bg-secondary-container'));
-            selectedBtn.classList.add('bg-secondary-container');
+            document.querySelectorAll('.time-btn').forEach(btn => btn.classList.remove('selected-cyan'));
+            selectedBtn.classList.add('selected-cyan');
         }
 
         function updateSummary() {
-            document.getElementById('summary-service').innerText = `${bookingData.service} Tutoring (${bookingData.type})`;
-            document.getElementById('summary-date').innerText = bookingData.date;
-            document.getElementById('summary-time').innerText = bookingData.time;
+            const typeLabel = bookingData.type || 'Corporate';
+            const serviceLabel = bookingData.service || 'English';
+            document.getElementById('summary-service').innerText = `${serviceLabel} Tutoring (${typeLabel})`;
+            document.getElementById('summary-date').innerText = bookingData.date || 'Oct 16, 2024';
+            document.getElementById('summary-time').innerText = bookingData.time || '01:00 PM';
+        }
+
+        function restoreBookingUI() {
+            const toggle = document.getElementById('step1-type-toggle');
+            if (toggle) toggle.checked = bookingData.type === 'Private';
+
+            document.querySelectorAll('.service-card').forEach(btn => {
+                const label = btn.querySelector('span.font-headline-md');
+                if (label && label.textContent.trim() === bookingData.service) {
+                    btn.classList.add('selected-cyan');
+                } else {
+                    btn.classList.remove('selected-cyan');
+                }
+            });
+
+            document.querySelectorAll('.date-btn').forEach(btn => {
+                const dateVal = btn.getAttribute('onclick');
+                if (dateVal && dateVal.includes(bookingData.date)) {
+                    btn.classList.add('selected-cyan');
+                } else {
+                    btn.classList.remove('selected-cyan');
+                }
+            });
+
+            document.querySelectorAll('.time-btn').forEach(btn => {
+                const timeVal = btn.getAttribute('onclick');
+                if (timeVal && timeVal.includes(bookingData.time)) {
+                    btn.classList.add('selected-cyan');
+                } else {
+                    btn.classList.remove('selected-cyan');
+                }
+            });
         }
 
         // Intersection Observer for Scroll Animations
