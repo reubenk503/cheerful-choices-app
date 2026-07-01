@@ -273,15 +273,17 @@
 <!-- Corporate Content -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-column-gap transition-opacity duration-500" id="corporateContent">
 <!-- Card 1 -->
-<div class="card-neo bg-surface p-8 flex flex-col gap-4 reveal-text h-full active">
-<div class="w-12 h-12 bg-primary-fixed border-2 border-on-background flex items-center justify-center mb-4">
+<div class="card-neo bg-surface p-6 flex flex-col gap-2 reveal-text h-full active">
+                    <div class="w-12 h-12 bg-primary-fixed border-2 border-on-background flex items-center justify-center">
 <span class="material-symbols-outlined text-on-background" style="font-variation-settings: 'FILL' 1;">language</span>
 </div>
 <h3 class="font-headline-md text-headline-md text-on-background" data-en="Business English" data-hu="Üzleti angol">Business English</h3>
 <p class="font-body-md text-body-md text-on-surface-variant flex-grow" data-en="Advanced communication strategies, negotiation vocabulary, and executive presence coaching for global markets." data-hu="Haladó kommunikációs stratégiák, tárgyalási szókincs és vezetői megjelenés-coaching globális piacokra.">Advanced communication strategies, negotiation vocabulary, and executive presence coaching for global markets.</p>
 </div>
 <!-- Card 2 -->
-<div class="card-neo bg-surface-container-high p-8 flex flex-col gap-4 reveal-text h-full active" style="transition-delay: 0.1s;">
+                <div class="card-neo bg-surface-container-high So let me think about the text that doesn't fit. The user selected the "Quantitative Analysis" card on the coaching page and the text doesn't fit. Looking at the screenshot, the card is beige/gray with a dark icon, title "Quantitative Analysis", and description text. The text appears to go to the bottom edge of the card.
+
+I should reduce padding and spacing in these corporate cards to give the text more room. I'll change `p-8` to `p-6` and `gap-4` to `gap-2`, and remove redundant `mb-4` from icon divs since the flex gap already handles spacing.
 <div class="w-12 h-12 bg-secondary-container border-2 border-on-background flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-on-background" style="font-variation-settings: 'FILL' 1;">science</span>
 </div>
