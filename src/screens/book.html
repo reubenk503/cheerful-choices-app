@@ -398,7 +398,7 @@
 
         // Booking State
         let bookingData = {
-            type: 'Corporate',
+            type: 'Private',
             service: '',
             date: '',
             time: ''
@@ -406,7 +406,7 @@
 
         try {
             const saved = localStorage.getItem('bookingData');
-            if (saved) bookingData = JSON.parse(saved);
+            if (saved) bookingData = Object.assign(bookingData, JSON.parse(saved));
         } catch (e) {}
 
         function persistBooking() {
@@ -418,7 +418,45 @@
             persistBooking();
         }
 
+        function applyTypeConstraints() {
+            const isCorporate = bookingData.type === 'Corporate';
+            document.querySelectorAll('.service-card').forEach(btn => {
+                const privateOnly = btn.hasAttribute('data-private-only');
+                if (isCorporate && privateOnly) {
+                    btn.classList.add('disabled');
+                    btn.setAttribute('aria-disabled', 'true');
+                    btn.setAttribute('tabindex', '-1');
+                    btn.classList.remove('selected-cyan');
+                } else {
+                    btn.classList.remove('disabled');
+                    btn.removeAttribute('aria-disabled');
+                    btn.removeAttribute('tabindex');
+                }
+            });
+
+            // If corporate is selected, force service to English
+            if (isCorporate) {
+                if (bookingData.service !== 'English') {
+                    bookingData.service = 'English';
+                    persistBooking();
+                }
+                const englishBtn = document.querySelector('.service-card[data-service="English"]');
+                if (englishBtn) englishBtn.classList.add('selected-cyan');
+            }
+        }
+
+        function setType(type) {
+            bookingData.type = type;
+            persistBooking();
+            document.querySelectorAll('.type-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-type') === type);
+                btn.setAttribute('aria-selected', btn.getAttribute('data-type') === type ? 'true' : 'false');
+            });
+            applyTypeConstraints();
+        }
+
         function updateServiceUI(selectedBtn) {
+            if (selectedBtn.classList.contains('disabled')) return;
             document.querySelectorAll('.service-card').forEach(btn => btn.classList.remove('selected-cyan'));
             selectedBtn.classList.add('selected-cyan');
         }
@@ -434,7 +472,7 @@
         }
 
         function updateSummary() {
-            const typeLabel = bookingData.type || 'Corporate';
+            const typeLabel = bookingData.type || 'Private';
             const serviceLabel = bookingData.service || 'English';
             document.getElementById('summary-service').innerText = `${serviceLabel} Tutoring (${typeLabel})`;
             document.getElementById('summary-date').innerText = bookingData.date || 'Oct 16, 2024';
@@ -442,21 +480,21 @@
         }
 
         function restoreBookingUI() {
-            const toggle = document.getElementById('step1-type-toggle');
-            if (toggle) toggle.checked = bookingData.type === 'Private';
+            // Restore segmented type toggle
+            setType(bookingData.type || 'Private');
 
             document.querySelectorAll('.service-card').forEach(btn => {
-                const label = btn.querySelector('span.font-headline-md');
-                if (label && label.getAttribute('data-en') === bookingData.service) {
+                const svc = btn.getAttribute('data-service');
+                if (svc && svc === bookingData.service && !btn.classList.contains('disabled')) {
                     btn.classList.add('selected-cyan');
-                } else {
+                } else if (!(bookingData.type === 'Corporate' && svc === 'English')) {
                     btn.classList.remove('selected-cyan');
                 }
             });
 
             document.querySelectorAll('.date-btn').forEach(btn => {
                 const dateVal = btn.getAttribute('onclick');
-                if (dateVal && dateVal.includes(bookingData.date)) {
+                if (dateVal && bookingData.date && dateVal.includes(bookingData.date)) {
                     btn.classList.add('selected-cyan');
                 } else {
                     btn.classList.remove('selected-cyan');
@@ -465,13 +503,14 @@
 
             document.querySelectorAll('.time-btn').forEach(btn => {
                 const timeVal = btn.getAttribute('onclick');
-                if (timeVal && timeVal.includes(bookingData.time)) {
+                if (timeVal && bookingData.time && timeVal.includes(bookingData.time)) {
                     btn.classList.add('selected-cyan');
                 } else {
                     btn.classList.remove('selected-cyan');
                 }
             });
         }
+
 
         // Intersection Observer for Scroll Animations
         document.addEventListener("DOMContentLoaded", () => {
