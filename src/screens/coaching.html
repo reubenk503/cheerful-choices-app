@@ -214,6 +214,24 @@
             color: theme('colors.on-primary-fixed');
             border-color: #333333;
         }
+
+        /* Segmented Private / Corporate toggle */
+        .type-toggle { box-shadow: 4px 4px 0 0 #1b1c1c; }
+        .type-btn {
+            background-color: transparent;
+            color: #1b1c1c;
+            min-width: 140px;
+            text-align: center;
+            transition: background-color .2s ease, color .2s ease, transform .1s ease;
+        }
+        .type-btn:hover { background-color: rgba(1,254,222,0.25); }
+        .type-btn:active { transform: scale(.97); }
+        .type-btn.active {
+            background-color: #01fede;
+            color: #00201b;
+            border-color: #1b1c1c !important;
+            box-shadow: inset 0 0 0 1px #1b1c1c;
+        }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden">
