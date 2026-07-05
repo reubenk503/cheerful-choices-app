@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
-import { Route as RegulatoryRouteImport } from './routes/regulatory'
 import { Route as DevelopmentRouteImport } from './routes/development'
 import { Route as CoachingRouteImport } from './routes/coaching'
 import { Route as BookRouteImport } from './routes/book'
@@ -19,11 +18,6 @@ import { Route as IndexRouteImport } from './routes/index'
 const TestimonialsRoute = TestimonialsRouteImport.update({
   id: '/testimonials',
   path: '/testimonials',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RegulatoryRoute = RegulatoryRouteImport.update({
-  id: '/regulatory',
-  path: '/regulatory',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DevelopmentRoute = DevelopmentRouteImport.update({
@@ -52,7 +46,6 @@ export interface FileRoutesByFullPath {
   '/book': typeof BookRoute
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
-  '/regulatory': typeof RegulatoryRoute
   '/testimonials': typeof TestimonialsRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +53,6 @@ export interface FileRoutesByTo {
   '/book': typeof BookRoute
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
-  '/regulatory': typeof RegulatoryRoute
   '/testimonials': typeof TestimonialsRoute
 }
 export interface FileRoutesById {
@@ -69,33 +61,19 @@ export interface FileRoutesById {
   '/book': typeof BookRoute
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
-  '/regulatory': typeof RegulatoryRoute
   '/testimonials': typeof TestimonialsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/book'
-    | '/coaching'
-    | '/development'
-    | '/regulatory'
-    | '/testimonials'
+  fullPaths: '/' | '/book' | '/coaching' | '/development' | '/testimonials'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/book'
-    | '/coaching'
-    | '/development'
-    | '/regulatory'
-    | '/testimonials'
+  to: '/' | '/book' | '/coaching' | '/development' | '/testimonials'
   id:
     | '__root__'
     | '/'
     | '/book'
     | '/coaching'
     | '/development'
-    | '/regulatory'
     | '/testimonials'
   fileRoutesById: FileRoutesById
 }
@@ -104,7 +82,6 @@ export interface RootRouteChildren {
   BookRoute: typeof BookRoute
   CoachingRoute: typeof CoachingRoute
   DevelopmentRoute: typeof DevelopmentRoute
-  RegulatoryRoute: typeof RegulatoryRoute
   TestimonialsRoute: typeof TestimonialsRoute
 }
 
@@ -115,13 +92,6 @@ declare module '@tanstack/react-router' {
       path: '/testimonials'
       fullPath: '/testimonials'
       preLoaderRoute: typeof TestimonialsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/regulatory': {
-      id: '/regulatory'
-      path: '/regulatory'
-      fullPath: '/regulatory'
-      preLoaderRoute: typeof RegulatoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/development': {
@@ -160,19 +130,8 @@ const rootRouteChildren: RootRouteChildren = {
   BookRoute: BookRoute,
   CoachingRoute: CoachingRoute,
   DevelopmentRoute: DevelopmentRoute,
-  RegulatoryRoute: RegulatoryRoute,
   TestimonialsRoute: TestimonialsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
