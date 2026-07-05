@@ -388,40 +388,29 @@
                 });
             }
 
-            // Toggle Logic for Offerings
-            const toggle = document.getElementById('offeringToggle');
-            const corpContent = document.getElementById('corporateContent');
-            const privContent = document.getElementById('privateContent');
+            // Segmented Toggle Logic for Offerings (Private default)
+            window.setOfferingType = function(type) {
+                const corpContent = document.getElementById('corporateContent');
+                const privContent = document.getElementById('privateContent');
+                if (!corpContent || !privContent) return;
 
-            if(toggle) {
-                toggle.addEventListener('change', function() {
-                    if(this.checked) {
-                        // Show Private, Hide Corp
-                        corpContent.classList.add('opacity-0');
-                        setTimeout(() => {
-                            corpContent.classList.add('hidden');
-                            privContent.classList.remove('hidden');
-                            // slight delay to allow display block to apply before fading in
-                            setTimeout(() => {
-                                privContent.classList.remove('opacity-0');
-                                privContent.classList.add('opacity-100');
-                            }, 50);
-                        }, 500); // match duration
-                        
-                    } else {
-                        // Show Corp, Hide Private
-                        privContent.classList.remove('opacity-100');
-                        privContent.classList.add('opacity-0');
-                        setTimeout(() => {
-                            privContent.classList.add('hidden');
-                            corpContent.classList.remove('hidden');
-                            setTimeout(() => {
-                                corpContent.classList.remove('opacity-0');
-                            }, 50);
-                        }, 500);
-                    }
+                document.querySelectorAll('.type-toggle .type-btn').forEach(btn => {
+                    const isActive = btn.getAttribute('data-type') === type;
+                    btn.classList.toggle('active', isActive);
+                    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
                 });
-            }
+
+                if (type === 'Corporate') {
+                    privContent.classList.add('hidden');
+                    corpContent.classList.remove('hidden');
+                } else {
+                    corpContent.classList.add('hidden');
+                    privContent.classList.remove('hidden');
+                }
+            };
+
+            // Initialize to Private by default
+            setOfferingType('Private');
         });
     </script>
 
