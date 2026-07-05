@@ -279,44 +279,27 @@
 <div class="text-center mb-16 reveal-text active">
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background" data-en="Tailored Pathways" data-hu="Személyre szabott utak">Tailored Pathways</h2>
 <!-- Custom Toggle Switch -->
-<div class="flex justify-center items-center mt-8 gap-4">
-<span class="font-label-caps text-label-caps uppercase font-bold text-on-background" data-en="Corporate" data-hu="Vállalati">Corporate</span>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" id="offeringToggle" type="checkbox" value=""/>
-<div class="w-16 h-8 bg-inverse-surface peer-focus:outline-none border-2 border-on-background peer peer-checked:after:translate-x-full peer-checked:after:border-on-background after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-primary-fixed after:border-on-background after:border-2 after:h-[24px] after:w-[28px] after:transition-all peer-checked:bg-secondary-container"></div>
-</label>
-<span class="font-label-caps text-label-caps uppercase font-bold text-on-background" data-en="Private" data-hu="Magán">Private</span>
+<div class="flex flex-col items-center mt-8 gap-3">
+<div class="type-toggle inline-flex items-center bg-surface-container-high border-2 border-on-background p-1 gap-1" role="tablist" aria-label="Session type">
+<button type="button" role="tab" data-type="Private" onclick="setOfferingType('Private')" class="type-btn font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-transparent" data-en="Private" data-hu="Magán">Private</button>
+<button type="button" role="tab" data-type="Corporate" onclick="setOfferingType('Corporate')" class="type-btn font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-transparent" data-en="Corporate" data-hu="Vállalati">Corporate</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant" data-en="Corporate coaching covers Business English only." data-hu="A vállalati coaching csak üzleti angolra vonatkozik.">Corporate coaching covers Business English only.</p>
 </div>
 </div>
 <!-- Corporate Content -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-column-gap transition-opacity duration-500" id="corporateContent">
-<!-- Card 1 -->
-<div class="card-neo bg-surface p-8 flex flex-col gap-4 reveal-text h-full active">
+<div class="hidden grid grid-cols-1 md:grid-cols-3 gap-column-gap transition-opacity duration-500" id="corporateContent">
+<!-- Card 1 (only offering) -->
+<div class="card-neo bg-surface p-8 flex flex-col gap-4 reveal-text h-full active md:col-start-2">
 <div class="w-12 h-12 bg-primary-fixed border-2 border-on-background flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-on-background" style="font-variation-settings: 'FILL' 1;">language</span>
 </div>
 <h3 class="font-headline-md text-[28px] leading-[32px] font-semibold text-on-background" data-en="Business English" data-hu="Üzleti angol">Business English</h3>
 <p class="font-body-md text-body-md text-on-surface-variant flex-grow" data-en="Advanced communication strategies, negotiation vocabulary, and executive presence coaching for global markets." data-hu="Haladó kommunikációs stratégiák, tárgyalási szókincs és vezetői megjelenés-coaching globális piacokra.">Advanced communication strategies, negotiation vocabulary, and executive presence coaching for global markets.</p>
 </div>
-<!-- Card 2 -->
-<div class="card-neo bg-surface-container-high p-8 flex flex-col gap-4 reveal-text h-full active" style="transition-delay: 0.1s;">
-<div class="w-12 h-12 bg-secondary-container border-2 border-on-background flex items-center justify-center mb-4">
-<span class="material-symbols-outlined text-on-background" style="font-variation-settings: 'FILL' 1;">science</span>
 </div>
-<h3 class="font-headline-md text-[28px] leading-[32px] font-semibold text-on-background" data-en="Technical Chem" data-hu="Technikai kémia">Technical Chem</h3>
-<p class="font-body-md text-body-md text-on-surface-variant flex-grow" data-en="Specialized terminology and concept review for professionals in pharmaceutical, manufacturing, and R&amp;D sectors." data-hu="Szakkifejezések és koncepciók áttekintése gyógyszeripari, gyártási és K+F szakemberek számára.">Specialized terminology and concept review for professionals in pharmaceutical, manufacturing, and R&amp;D sectors.</p>
-</div>
-<!-- Card 3 -->
-<div class="card-neo bg-tertiary-container p-8 flex flex-col gap-4 reveal-text h-full active" style="transition-delay: 0.2s;">
-<div class="w-12 h-12 bg-inverse-surface border-2 border-primary-fixed flex items-center justify-center mb-4">
-<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">calculate</span>
-</div>
-<h3 class="font-headline-md text-[28px] leading-[32px] font-semibold text-on-background" data-en="Quantitative Analysis" data-hu="Kvantitatív elemzés">Quantitative Analysis</h3>
-<p class="font-body-md text-body-md text-on-surface-variant flex-grow" data-en="Mathematical modeling, statistical fundamentals, and data interpretation for corporate decision-makers." data-hu="Matematikai modellezés, statisztikai alapok és adatértelmezés vállalati döntéshozók számára.">Mathematical modeling, statistical fundamentals, and data interpretation for corporate decision-makers.</p>
-</div>
-</div>
-<!-- Private Content (Hidden by default) -->
-<div class="hidden grid grid-cols-1 md:grid-cols-3 gap-column-gap transition-opacity duration-500" id="privateContent">
+<!-- Private Content (Default visible) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-column-gap transition-opacity duration-500" id="privateContent">
 <!-- Card 1 -->
 <div class="card-neo bg-surface p-8 flex flex-col gap-4 h-full">
 <div class="w-12 h-12 bg-primary-fixed border-2 border-on-background flex items-center justify-center mb-4">
