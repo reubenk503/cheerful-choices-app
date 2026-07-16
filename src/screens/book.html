@@ -209,7 +209,7 @@
             box-shadow: 10px 10px 0px 0px #333333;
         }
 
-        .selected-cyan {
+        .selected-pink {
             background-color: #ec4899 !important;
             color: #3b0764 !important;
         }
@@ -426,7 +426,7 @@
                     btn.classList.add('disabled');
                     btn.setAttribute('aria-disabled', 'true');
                     btn.setAttribute('tabindex', '-1');
-                    btn.classList.remove('selected-cyan');
+                    btn.classList.remove('selected-pink');
                 } else {
                     btn.classList.remove('disabled');
                     btn.removeAttribute('aria-disabled');
@@ -441,7 +441,7 @@
                     persistBooking();
                 }
                 const englishBtn = document.querySelector('.service-card[data-service="English"]');
-                if (englishBtn) englishBtn.classList.add('selected-cyan');
+                if (englishBtn) englishBtn.classList.add('selected-pink');
             }
         }
 
@@ -457,18 +457,18 @@
 
         function updateServiceUI(selectedBtn) {
             if (selectedBtn.classList.contains('disabled')) return;
-            document.querySelectorAll('.service-card').forEach(btn => btn.classList.remove('selected-cyan'));
-            selectedBtn.classList.add('selected-cyan');
+            document.querySelectorAll('.service-card').forEach(btn => btn.classList.remove('selected-pink'));
+            selectedBtn.classList.add('selected-pink');
         }
 
         function updateDateUI(selectedBtn) {
-            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('selected-cyan'));
-            selectedBtn.classList.add('selected-cyan');
+            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('selected-pink'));
+            selectedBtn.classList.add('selected-pink');
         }
 
         function updateTimeUI(selectedBtn) {
-            document.querySelectorAll('.time-btn').forEach(btn => btn.classList.remove('selected-cyan'));
-            selectedBtn.classList.add('selected-cyan');
+            document.querySelectorAll('.time-btn').forEach(btn => btn.classList.remove('selected-pink'));
+            selectedBtn.classList.add('selected-pink');
         }
 
         function updateSummary() {
@@ -486,27 +486,27 @@
             document.querySelectorAll('.service-card').forEach(btn => {
                 const svc = btn.getAttribute('data-service');
                 if (svc && svc === bookingData.service && !btn.classList.contains('disabled')) {
-                    btn.classList.add('selected-cyan');
+                    btn.classList.add('selected-pink');
                 } else if (!(bookingData.type === 'Corporate' && svc === 'English')) {
-                    btn.classList.remove('selected-cyan');
+                    btn.classList.remove('selected-pink');
                 }
             });
 
             document.querySelectorAll('.date-btn').forEach(btn => {
                 const dateVal = btn.getAttribute('onclick');
                 if (dateVal && bookingData.date && dateVal.includes(bookingData.date)) {
-                    btn.classList.add('selected-cyan');
+                    btn.classList.add('selected-pink');
                 } else {
-                    btn.classList.remove('selected-cyan');
+                    btn.classList.remove('selected-pink');
                 }
             });
 
             document.querySelectorAll('.time-btn').forEach(btn => {
                 const timeVal = btn.getAttribute('onclick');
                 if (timeVal && bookingData.time && timeVal.includes(bookingData.time)) {
-                    btn.classList.add('selected-cyan');
+                    btn.classList.add('selected-pink');
                 } else {
-                    btn.classList.remove('selected-cyan');
+                    btn.classList.remove('selected-pink');
                 }
             });
         }
