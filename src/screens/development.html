@@ -255,7 +255,17 @@
             transform: scale(1.05);
         }
 
-        /* Mobile Menu Stagger */
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 300px;
+            opacity: 1;
+        }
         #mobile-menu a {
             opacity: 0;
             transform: translateY(-10px);
@@ -268,8 +278,6 @@
         #mobile-menu.open a:nth-child(1) { transition-delay: 50ms; }
         #mobile-menu.open a:nth-child(2) { transition-delay: 100ms; }
         #mobile-menu.open a:nth-child(3) { transition-delay: 150ms; }
-        #mobile-menu.open a:nth-child(4) { transition-delay: 200ms; }
-        #mobile-menu.open a:nth-child(5) { transition-delay: 250ms; }
             .btn-shadow {
             box-shadow: 4px 4px 0px 0px #333333;
             transition: all 0.2s ease;
@@ -292,7 +300,20 @@
 <a class="font-label-caps text-label-caps uppercase text-primary-fixed dark:text-primary-fixed-dim border-b-2 border-primary-fixed pb-1 transition-transform duration-200 hover:-translate-y-1 hover:text-primary-fixed cursor-pointer active:scale-95" href="/development" data-en="Personal Development" data-hu="Személyes Fejlődés"><span class="border-b-2 border-primary-fixed pb-1 inline-block">Personal Development</span></a>
 <a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
 </div>
-<a class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-6 py-2 border-2 border-on-background btn-shadow cursor-pointer active:scale-95 inline-block" href="/book" data-en="Book Call" data-hu="Hívás Foglalása">Book Call</a>
+<div class="flex items-center gap-3">
+<a class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-4 py-2 md:px-6 border-2 border-on-background btn-shadow cursor-pointer active:scale-95 inline-block" href="/book" data-en="Book Call" data-hu="Hívás Foglalása">Book Call</a>
+<button type="button" id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-11 h-11 border-2 border-on-background bg-surface dark:bg-surface-container-high active:scale-95 transition-transform" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+<span class="material-symbols-outlined text-2xl" id="mobile-menu-icon">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Nav Panel -->
+<div id="mobile-menu" class="md:hidden border-t-2 border-on-background bg-inverse-surface dark:bg-surface-container-highest">
+<div class="flex flex-col px-6 py-2 gap-1">
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed py-3 border-b border-on-background/10" href="/coaching" data-en="Coaching" data-hu="Coaching">Coaching</a>
+<a class="font-label-caps text-label-caps uppercase text-primary-fixed dark:text-primary-fixed-dim py-3 border-b border-on-background/10" href="/development" data-en="Personal Development" data-hu="Személyes Fejlődés">Personal Development</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed py-3" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
+</div>
 </div>
 </nav>
 <main>
@@ -535,15 +556,26 @@
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener('click', () => {
-                if(mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.remove('hidden');
-                    setTimeout(() => mobileMenu.classList.add('open'), 10);
-                } else {
+                const isOpen = mobileMenu.classList.toggle('open');
+                mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                if (mobileMenuIcon) mobileMenuIcon.textContent = isOpen ? 'close' : 'menu';
+            });
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
                     mobileMenu.classList.remove('open');
-                    setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
+                });
+            });
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768 && mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
                 }
             });
         }

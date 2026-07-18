@@ -232,6 +232,18 @@
             border-color: #1b1c1c !important;
             box-shadow: inset 0 0 0 1px #1b1c1c;
         }
+
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 300px;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden">
@@ -246,7 +258,20 @@
 <a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="/development" data-en="Personal Development" data-hu="Személyes Fejlődés">Personal Development</a>
 <a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed transition-transform duration-200 hover:-translate-y-1 cursor-pointer active:scale-95" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
 </div>
-<a class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-6 py-2 border-2 border-on-background btn-shadow cursor-pointer active:scale-95 inline-block" href="/book" data-en="Book Call" data-hu="Hívás Foglalása">Book Call</a>
+<div class="flex items-center gap-3">
+<a class="font-label-caps text-label-caps uppercase bg-primary-fixed text-on-primary-fixed px-4 py-2 md:px-6 border-2 border-on-background btn-shadow cursor-pointer active:scale-95 inline-block" href="/book" data-en="Book Call" data-hu="Hívás Foglalása">Book Call</a>
+<button type="button" id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-11 h-11 border-2 border-on-background bg-surface dark:bg-surface-container-high active:scale-95 transition-transform" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+<span class="material-symbols-outlined text-2xl" id="mobile-menu-icon">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Nav Panel -->
+<div id="mobile-menu" class="md:hidden border-t-2 border-on-background bg-inverse-surface dark:bg-surface-container-highest">
+<div class="flex flex-col px-6 py-2 gap-1">
+<a class="font-label-caps text-label-caps uppercase text-primary-fixed dark:text-primary-fixed-dim py-3 border-b border-on-background/10" href="/coaching" data-en="Coaching" data-hu="Coaching">Coaching</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed py-3 border-b border-on-background/10" href="/development" data-en="Personal Development" data-hu="Személyes Fejlődés">Personal Development</a>
+<a class="font-label-caps text-label-caps uppercase text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed py-3" href="/testimonials" data-en="Testimonials" data-hu="Vélemények">Testimonials</a>
+</div>
 </div>
 </nav>
 <!-- Main Content Area -->
@@ -346,6 +371,33 @@
 </div>
 </footer>
 <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const isOpen = mobileMenu.classList.toggle('open');
+                mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                if (mobileMenuIcon) mobileMenuIcon.textContent = isOpen ? 'close' : 'menu';
+            });
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
+                });
+            });
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768 && mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
+                }
+            });
+        }
+
         // Intersection Observer for Reveal Animations
         document.addEventListener("DOMContentLoaded", () => {
             const observerOptions = {
