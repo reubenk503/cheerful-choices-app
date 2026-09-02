@@ -591,6 +591,16 @@
                 }
             });
 
+            // Restore personal development multi-select
+            const pdPanel = document.getElementById('pd-options');
+            const pdActive = bookingData.service === 'Personal Development' && bookingData.type !== 'Corporate';
+            if (pdPanel) pdPanel.classList.toggle('hidden', !pdActive);
+            document.querySelectorAll('.pd-option').forEach(btn => {
+                const opt = btn.getAttribute('data-pd-option');
+                btn.classList.toggle('selected-pink', pdActive && bookingData.pdOptions.indexOf(opt) >= 0);
+            });
+            updatePdTotal();
+
             document.querySelectorAll('.date-btn').forEach(btn => {
                 const dateVal = btn.getAttribute('onclick');
                 if (dateVal && bookingData.date && dateVal.includes(bookingData.date)) {
