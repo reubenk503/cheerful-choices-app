@@ -290,10 +290,16 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   var pats = ['bg-pattern-dots', 'bg-pattern-blobs', 'bg-pattern-cross', 'bg-pattern-zigzag', 'bg-pattern-grid', 'bg-pattern-diag'];
+  var imgURL = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='%237c3aed' stroke-opacity='0.10' stroke-width='2'%3E%3Ccircle cx='210' cy='210' r='180'/%3E%3Ccircle cx='210' cy='210' r='130'/%3E%3Cpath d='M210 60 L240 180 L360 210 L240 240 L210 360 L180 240 L60 210 L180 180 Z'/%3E%3C/g%3E%3Cg fill='none' stroke='%23ec4899' stroke-opacity='0.10' stroke-width='2'%3E%3Ccircle cx='210' cy='210' r='80'/%3E%3Cpath d='M210 130 L255 255 L165 255 Z'/%3E%3C/g%3E%3C/svg%3E\")";
   var secs = Array.from(document.querySelectorAll('section'));
   secs.forEach(function (s, i) {
-    s.classList.add('bg-pattern-image');
     if (i > 0) s.classList.add(pats[(i - 1) % pats.length]);
+    var pos = getComputedStyle(s).position;
+    if (pos === 'static') s.style.position = 'relative';
+    var deco = document.createElement('div');
+    deco.setAttribute('aria-hidden', 'true');
+    deco.style.cssText = 'position:absolute;pointer-events:none;z-index:0;width:420px;height:420px;background-image:' + imgURL + ';background-repeat:no-repeat;background-size:contain;' + (i % 2 === 0 ? 'right:-80px;bottom:-80px;' : 'left:-80px;top:-80px;');
+    s.insertBefore(deco, s.firstChild);
   });
 });
 </script>
