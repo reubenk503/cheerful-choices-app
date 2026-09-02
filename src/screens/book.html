@@ -501,12 +501,26 @@
             selectedBtn.classList.add('selected-pink');
         }
 
+        function getServicePrice(service) {
+            const btn = document.querySelector(`.service-card[data-service="${service}"]`);
+            if (!btn) return 25;
+            const price = parseInt(btn.getAttribute('data-price') || '25', 10);
+            return isNaN(price) ? 25 : price;
+        }
+
         function updateSummary() {
             const typeLabel = bookingData.type || 'Private';
             const serviceLabel = bookingData.service || 'English';
-            document.getElementById('summary-service').innerText = `${serviceLabel} Tutoring (${typeLabel})`;
+            const isPersonalDev = serviceLabel === 'Personal Development';
+            const suffix = isPersonalDev ? 'Session' : 'Tutoring';
+            const price = getServicePrice(serviceLabel);
+            const lang = document.documentElement.getAttribute('lang') || 'en';
+            const sessionLabel = lang === 'hu' ? 'foglalkozás' : 'session';
+            document.getElementById('summary-service').innerText = `${serviceLabel} ${suffix} (${typeLabel})`;
             document.getElementById('summary-date').innerText = bookingData.date || 'Oct 16, 2024';
             document.getElementById('summary-time').innerText = bookingData.time || '01:00 PM';
+            document.getElementById('summary-rate').innerText = `£${price} / ${sessionLabel}`;
+            document.getElementById('summary-total').innerText = `£${price}`;
         }
 
         function restoreBookingUI() {
