@@ -654,26 +654,99 @@
 </script>
 
 
-<script id="modality-toggle-init">
+<script id="modality-modal-init">
 (function(){
+  // Build modal overlay once
+  var overlay = document.createElement('div');
+  overlay.id = 'pd-modal';
+  overlay.className = 'fixed inset-0 z-[200] hidden items-center justify-center p-4 md:p-8';
+  overlay.innerHTML =
+    '<div class="absolute inset-0 bg-on-background/70" data-pd-close></div>' +
+    '<div class="relative bg-surface-container-low border-2 border-on-background w-full max-w-2xl max-h-[80vh] flex flex-col" role="dialog" aria-modal="true">' +
+      '<div class="flex items-start justify-between gap-4 p-6 md:p-8 border-b-2 border-on-background/20 shrink-0">' +
+        '<h2 id="pd-modal-title" class="font-headline-md text-headline-md text-on-background"></h2>' +
+        '<button type="button" data-pd-close class="shrink-0 w-10 h-10 flex items-center justify-center border-2 border-on-background text-on-background hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors cursor-pointer" aria-label="Close">' +
+          '<span class="material-symbols-outlined">close</span>' +
+        '</button>' +
+      '</div>' +
+      '<div id="pd-modal-body" class="p-6 md:p-8 overflow-y-auto flex-1"></div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+
+  var titleEl = overlay.querySelector('#pd-modal-title');
+  var bodyEl = overlay.querySelector('#pd-modal-body');
+
+  function currentLang(){ return document.documentElement.lang === 'hu' ? 'hu' : 'en'; }
+
+  function localizedText(el){
+    if(!el) return '';
+    var lang = currentLang();
+    var v = el.getAttribute('data-' + lang);
+    return v || el.textContent.trim();
+  }
+
+  function openModal(article){
+    var h2 = article.querySelector('h2');
+    titleEl.textContent = localizedText(h2);
+    titleEl.setAttribute('data-en', h2 ? (h2.getAttribute('data-en') || h2.textContent.trim()) : '');
+    titleEl.setAttribute('data-hu', h2 ? (h2.getAttribute('data-hu') || '') : '');
+
+    bodyEl.innerHTML = '';
+    // Intro paragraph (card description)
+    var intro = article.querySelector('p');
+    if(intro){
+      var p1 = document.createElement('p');
+      p1.className = 'font-body-md text-body-md text-on-surface-variant mb-6';
+      p1.setAttribute('data-en', intro.getAttribute('data-en') || intro.textContent.trim());
+      p1.setAttribute('data-hu', intro.getAttribute('data-hu') || '');
+      p1.textContent = localizedText(intro);
+      bodyEl.appendChild(p1);
+    }
+    // Detailed paragraphs from the hidden details panel
+    article.querySelectorAll('.modality-details p').forEach(function(src){
+      var p = document.createElement('p');
+      p.className = 'font-body-md text-body-md text-on-surface-variant mb-6';
+      p.setAttribute('data-en', src.getAttribute('data-en') || src.textContent.trim());
+      p.setAttribute('data-hu', src.getAttribute('data-hu') || '');
+      p.textContent = localizedText(src);
+      bodyEl.appendChild(p);
+    });
+    // Price line
+    var price = article.querySelector('[data-en^="£50"]');
+    if(price){
+      var pr = document.createElement('p');
+      pr.className = 'font-label-caps text-label-caps text-primary-fixed font-bold';
+      pr.setAttribute('data-en', price.getAttribute('data-en'));
+      pr.setAttribute('data-hu', price.getAttribute('data-hu') || '');
+      pr.textContent = localizedText(price);
+      bodyEl.appendChild(pr);
+    }
+
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+    document.body.style.overflow = 'hidden'; // keep background static
+    bodyEl.scrollTop = 0;
+  }
+
+  function closeModal(){
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
   document.addEventListener('click', function(e){
     var btn = e.target.closest('.modality-toggle');
-    if(!btn) return;
-    e.preventDefault();
-    var article = btn.closest('article');
-    if(!article) return;
-    var panel = article.querySelector('.modality-details');
-    if(!panel) return;
-    var open = !panel.classList.contains('hidden');
-    panel.classList.toggle('hidden');
-    var label = btn.querySelector('.toggle-label');
-    var lang = document.documentElement.lang === 'hu' ? 'hu' : 'en';
-    if(!open){
-      // now opening
-      if(label) label.textContent = lang==='hu' ? btn.getAttribute('data-hu-alt') : btn.getAttribute('data-en-alt');
-    } else {
-      if(label) label.textContent = lang==='hu' ? btn.getAttribute('data-hu') : btn.getAttribute('data-en');
+    if(btn){
+      e.preventDefault();
+      var article = btn.closest('article');
+      if(article) openModal(article);
+      return;
     }
+    if(e.target.closest('[data-pd-close]')) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && !overlay.classList.contains('hidden')) closeModal();
   });
 })();
 </script>
