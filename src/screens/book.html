@@ -529,9 +529,10 @@
 
             document.querySelectorAll('.service-card').forEach(btn => {
                 const svc = btn.getAttribute('data-service');
-                if (svc && svc === bookingData.service && !btn.classList.contains('disabled')) {
+                const shouldBeSelected = svc && svc === bookingData.service && !btn.classList.contains('disabled');
+                if (shouldBeSelected) {
                     btn.classList.add('selected-pink');
-                } else if (!(bookingData.type === 'Corporate' && svc === 'English')) {
+                } else {
                     btn.classList.remove('selected-pink');
                 }
             });
