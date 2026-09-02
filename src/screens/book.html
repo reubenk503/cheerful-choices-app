@@ -495,6 +495,42 @@
             if (selectedBtn.classList.contains('disabled')) return;
             document.querySelectorAll('.service-card').forEach(btn => btn.classList.remove('selected-pink'));
             selectedBtn.classList.add('selected-pink');
+            const panel = document.getElementById('pd-options');
+            if (panel) {
+                const isPd = selectedBtn.getAttribute('data-service') === 'Personal Development';
+                panel.classList.toggle('hidden', !isPd);
+                if (!isPd) {
+                    bookingData.pdOptions = [];
+                    persistBooking();
+                    document.querySelectorAll('.pd-option').forEach(o => o.classList.remove('selected-pink'));
+                }
+            }
+            updatePdTotal();
+        }
+
+        function togglePdOption(btn) {
+            const opt = btn.getAttribute('data-pd-option');
+            const idx = bookingData.pdOptions.indexOf(opt);
+            if (idx >= 0) {
+                bookingData.pdOptions.splice(idx, 1);
+                btn.classList.remove('selected-pink');
+            } else {
+                bookingData.pdOptions.push(opt);
+                btn.classList.add('selected-pink');
+            }
+            persistBooking();
+            updatePdTotal();
+        }
+
+        function updatePdTotal() {
+            const el = document.getElementById('pd-total');
+            if (!el) return;
+            const lang = document.documentElement.getAttribute('lang') || 'en';
+            const count = bookingData.pdOptions.length;
+            const total = count * 50;
+            el.innerText = lang === 'hu'
+                ? `Kiválasztva: ${count} — Összesen: £${total}`
+                : `Selected: ${count} — Total: £${total}`;
         }
 
         function updateDateUI(selectedBtn) {
