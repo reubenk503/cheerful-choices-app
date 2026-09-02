@@ -552,16 +552,28 @@
 
         function updateSummary() {
             const typeLabel = bookingData.type || 'Private';
-            const serviceLabel = bookingData.service || 'English';
+            let serviceLabel = bookingData.service || 'English';
             const isPersonalDev = serviceLabel === 'Personal Development';
             const suffix = isPersonalDev ? 'Session' : 'Tutoring';
-            const price = getServicePrice(serviceLabel);
+            let price = getServicePrice(serviceLabel);
             const lang = document.documentElement.getAttribute('lang') || 'en';
             const sessionLabel = lang === 'hu' ? 'foglalkozás' : 'session';
+            if (isPersonalDev && bookingData.pdOptions.length > 0) {
+                price = bookingData.pdOptions.length * 50;
+                const optionsText = bookingData.pdOptions.map(opt => {
+                    const btn = document.querySelector(`.pd-option[data-pd-option="${opt}"] span[data-en]`);
+                    if (!btn) return opt;
+                    return (lang === 'hu' ? btn.getAttribute('data-hu') : btn.getAttribute('data-en')) || opt;
+                }).join(' + ');
+                const pdName = lang === 'hu' ? 'Személyes Fejlődés' : 'Personal Development';
+                serviceLabel = `${pdName}: ${optionsText}`;
+            }
             document.getElementById('summary-service').innerText = `${serviceLabel} ${suffix} (${typeLabel})`;
             document.getElementById('summary-date').innerText = bookingData.date || 'Oct 16, 2024';
             document.getElementById('summary-time').innerText = bookingData.time || '01:00 PM';
-            document.getElementById('summary-rate').innerText = `£${price} / ${sessionLabel}`;
+            document.getElementById('summary-rate').innerText = isPersonalDev && bookingData.pdOptions.length > 0
+                ? `£50 × ${bookingData.pdOptions.length}`
+                : `£${price} / ${sessionLabel}`;
             document.getElementById('summary-total').innerText = `£${price}`;
         }
 
