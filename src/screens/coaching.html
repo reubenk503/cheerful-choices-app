@@ -245,6 +245,33 @@
             opacity: 1;
         }
     </style>
+
+<style id="section-patterns">
+.bg-pattern-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--primary) 14%, transparent) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+.bg-pattern-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.bg-pattern-diag {
+  background-image: repeating-linear-gradient(135deg, color-mix(in oklab, var(--primary-fixed) 8%, transparent) 0 2px, transparent 2px 18px);
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var pats = ['bg-pattern-dots', 'bg-pattern-grid', 'bg-pattern-diag'];
+  var secs = Array.from(document.querySelectorAll('section'));
+  secs.forEach(function (s, i) {
+    // skip hero (first section) so headline stays clean
+    if (i === 0) return;
+    s.classList.add(pats[i % pats.length]);
+  });
+});
+</script>
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden">
 <!-- Top Navigation from Shared Components -->
