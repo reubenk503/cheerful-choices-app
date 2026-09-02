@@ -470,8 +470,12 @@
             if (isCorporate) {
                 if (bookingData.service !== 'English') {
                     bookingData.service = 'English';
-                    persistBooking();
                 }
+                bookingData.pdOptions = [];
+                persistBooking();
+                document.querySelectorAll('.pd-option').forEach(o => o.classList.remove('selected-pink'));
+                const panel = document.getElementById('pd-options');
+                if (panel) panel.classList.add('hidden');
                 const englishBtn = document.querySelector('.service-card[data-service="English"]');
                 if (englishBtn) englishBtn.classList.add('selected-pink');
             }
