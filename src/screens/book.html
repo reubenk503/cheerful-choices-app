@@ -739,7 +739,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         tb.className = 'p-3 border-2 border-outline-variant bg-surface-container-high text-outline line-through cursor-not-allowed';
                         tb.disabled = true;
                     } else {
-                        tb.className = 'time-btn p-3 border-2 border-on-background bg-surface hover:bg-secondary-container transition-all duration-300 font-bold' + (slot.time === t ? ' selected-pink' : '');
+                        tb.className = 'time-btn p-3 border-2 border-on-background bg-surface hover:bg-secondary-container transition-all duration-300 font-bold' + (slot.times.indexOf(t) >= 0 ? ' selected-pink' : '');
                         tb.onclick = (function (itemName, val, b) { return function () { selectSlotTime(itemName, val, b); }; })(item, t, tb);
                     }
                     timeWrap.appendChild(tb);
