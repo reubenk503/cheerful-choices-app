@@ -835,7 +835,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     left.appendChild(typeSpan);
                     const right = document.createElement('span');
                     right.className = 'font-label-caps text-label-caps text-on-surface-variant';
-                    const times = slot.times.length ? slot.times.join(' + ') : noTime;
+                    const times = slot.timesByDate[d] || noTime;
                     right.textContent = (d || noDate) + ' · ' + times + ' · £' + price;
                     row.appendChild(left);
                     row.appendChild(right);
