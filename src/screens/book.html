@@ -385,6 +385,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (i > 0) s.classList.add(pats[(i - 1) % pats.length]);
     var pos = getComputedStyle(s).position;
     if (pos === 'static') s.style.position = 'relative';
+    s.style.overflow = 'hidden';
     var deco = document.createElement('div');
     deco.setAttribute('aria-hidden', 'true');
     deco.style.cssText = 'position:absolute;pointer-events:none;z-index:0;width:520px;height:520px;background-image:' + imgURL + ';background-repeat:no-repeat;background-size:contain;' + (i % 2 === 0 ? 'right:-60px;bottom:-60px;' : 'left:-60px;top:-60px;');
