@@ -488,15 +488,15 @@ document.addEventListener('DOMContentLoaded', function () {
         let bookingData = {
             type: 'Private',
             service: '',
-            date: '',
-            time: '',
-            pdOptions: []
+            pdOptions: [],
+            slots: {}
         };
 
         try {
             const saved = localStorage.getItem('bookingData');
             if (saved) bookingData = Object.assign(bookingData, JSON.parse(saved));
             if (!Array.isArray(bookingData.pdOptions)) bookingData.pdOptions = [];
+            if (!bookingData.slots || typeof bookingData.slots !== 'object' || Array.isArray(bookingData.slots)) bookingData.slots = {};
         } catch (e) {}
 
         function persistBooking() {
@@ -591,14 +591,141 @@ document.addEventListener('DOMContentLoaded', function () {
                 : `Selected: ${count} — Total: £${total}`;
         }
 
-        function updateDateUI(selectedBtn) {
-            document.querySelectorAll('.date-btn').forEach(btn => btn.classList.remove('selected-pink'));
-            selectedBtn.classList.add('selected-pink');
+        const TIME_SLOTS = ['09:00 AM', '10:30 AM', '01:00 PM', '02:30 PM'];
+        const DISABLED_TIMES = ['10:30 AM'];
+        const MONTH_NAMES_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const MONTH_NAMES_HU = ['január','február','március','április','május','június','július','augusztus','szeptember','október','november','december'];
+        const WD_EN = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+        const WD_HU = ['H','K','Sze','Cs','P','Szo','V'];
+
+        function getBookingItems() {
+            if (bookingData.service === 'Personal Development' && bookingData.type !== 'Corporate' && bookingData.pdOptions.length > 0) {
+                return bookingData.pdOptions.slice();
+            }
+            return [bookingData.service || 'English'];
         }
 
-        function updateTimeUI(selectedBtn) {
-            document.querySelectorAll('.time-btn').forEach(btn => btn.classList.remove('selected-pink'));
-            selectedBtn.classList.add('selected-pink');
+        function itemLabel(item, lang) {
+            const pdSpan = document.querySelector(`.pd-option[data-pd-option="${item}"] span[data-en]`);
+            if (pdSpan) return (lang === 'hu' ? pdSpan.getAttribute('data-hu') : pdSpan.getAttribute('data-en')) || item;
+            const svcSpan = document.querySelector(`.service-card[data-service="${item}"] span[data-en]`);
+            if (svcSpan) return (lang === 'hu' ? svcSpan.getAttribute('data-hu') : svcSpan.getAttribute('data-en')) || item;
+            return item;
+        }
+
+        function itemPrice(item) {
+            if (bookingData.service === 'Personal Development') return 50;
+            return getServicePrice(item);
+        }
+
+        function formatDateValue(y, m, d) {
+            return new Date(y, m, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        function buildMonthBlock(item, year, month, selectedDate) {
+            const lang = document.documentElement.getAttribute('lang') || 'en';
+            const wrap = document.createElement('div');
+            wrap.className = 'month-block border-2 border-on-background bg-surface p-3';
+            const label = document.createElement('div');
+            label.className = 'font-label-caps text-label-caps uppercase text-on-background mb-2 text-center';
+            label.setAttribute('data-en', MONTH_NAMES_EN[month] + ' ' + year);
+            label.setAttribute('data-hu', year + '. ' + MONTH_NAMES_HU[month]);
+            label.textContent = lang === 'hu' ? (year + '. ' + MONTH_NAMES_HU[month]) : (MONTH_NAMES_EN[month] + ' ' + year);
+            wrap.appendChild(label);
+            const grid = document.createElement('div');
+            grid.className = 'grid grid-cols-7 gap-1 text-center';
+            for (let i = 0; i < 7; i++) {
+                const h = document.createElement('div');
+                h.className = 'font-label-caps text-[10px] text-on-surface-variant' + (i >= 5 ? ' text-secondary' : '');
+                h.setAttribute('data-en', WD_EN[i]);
+                h.setAttribute('data-hu', WD_HU[i]);
+                h.textContent = lang === 'hu' ? WD_HU[i] : WD_EN[i];
+                grid.appendChild(h);
+            }
+            const firstMondayIdx = (new Date(year, month, 1).getDay() + 6) % 7;
+            for (let i = 0; i < firstMondayIdx; i++) {
+                const pad = document.createElement('div');
+                grid.appendChild(pad);
+            }
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateObj = new Date(year, month, d);
+                const dateStr = formatDateValue(year, month, d);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = d;
+                if (dateObj < today) {
+                    btn.className = 'p-1.5 text-xs md:text-sm border-2 border-outline-variant bg-surface-container-high text-outline line-through cursor-not-allowed';
+                    btn.disabled = true;
+                } else {
+                    btn.className = 'date-btn p-1.5 text-xs md:text-sm border-2 border-on-background bg-surface hover:bg-primary-fixed' + (selectedDate === dateStr ? ' selected-pink' : '');
+                    btn.onclick = (function (itemName, val, b) { return function () { selectSlotDate(itemName, val, b); }; })(item, dateStr, btn);
+                }
+                grid.appendChild(btn);
+            }
+            wrap.appendChild(grid);
+            return wrap;
+        }
+
+        function selectSlotDate(item, dateStr, btn) {
+            if (!bookingData.slots[item]) bookingData.slots[item] = {};
+            bookingData.slots[item].date = dateStr;
+            persistBooking();
+            const scope = btn.closest('.schedule-item') || document;
+            scope.querySelectorAll('.date-btn').forEach(b => b.classList.remove('selected-pink'));
+            btn.classList.add('selected-pink');
+        }
+
+        function selectSlotTime(item, timeStr, btn) {
+            if (!bookingData.slots[item]) bookingData.slots[item] = {};
+            bookingData.slots[item].time = timeStr;
+            persistBooking();
+            const scope = btn.closest('.schedule-item') || document;
+            scope.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected-pink'));
+            btn.classList.add('selected-pink');
+        }
+
+        function buildScheduleUI() {
+            const container = document.getElementById('schedule-container');
+            if (!container) return;
+            const lang = document.documentElement.getAttribute('lang') || 'en';
+            container.innerHTML = '';
+            const now = new Date();
+            getBookingItems().forEach(item => {
+                const slot = bookingData.slots[item] || {};
+                const block = document.createElement('div');
+                block.className = 'schedule-item border-2 border-on-background bg-surface-container-low p-4 md:p-6 flex flex-col gap-4';
+                block.setAttribute('data-schedule-item', item);
+                const title = document.createElement('h3');
+                title.className = 'font-headline-md text-[18px] md:text-[22px] text-on-background';
+                title.textContent = itemLabel(item, lang) + ' — £' + itemPrice(item);
+                block.appendChild(title);
+                const strip = document.createElement('div');
+                strip.className = 'month-strip';
+                for (let m = 0; m < 3; m++) {
+                    const dt = new Date(now.getFullYear(), now.getMonth() + m, 1);
+                    strip.appendChild(buildMonthBlock(item, dt.getFullYear(), dt.getMonth(), slot.date));
+                }
+                block.appendChild(strip);
+                const timeWrap = document.createElement('div');
+                timeWrap.className = 'grid grid-cols-2 md:grid-cols-4 gap-3';
+                TIME_SLOTS.forEach(t => {
+                    const tb = document.createElement('button');
+                    tb.type = 'button';
+                    tb.textContent = t;
+                    if (DISABLED_TIMES.indexOf(t) >= 0) {
+                        tb.className = 'p-3 border-2 border-outline-variant bg-surface-container-high text-outline line-through cursor-not-allowed';
+                        tb.disabled = true;
+                    } else {
+                        tb.className = 'time-btn p-3 border-2 border-on-background bg-surface hover:bg-secondary-container transition-all duration-300 font-bold' + (slot.time === t ? ' selected-pink' : '');
+                        tb.onclick = (function (itemName, val, b) { return function () { selectSlotTime(itemName, val, b); }; })(item, t, tb);
+                    }
+                    timeWrap.appendChild(tb);
+                });
+                block.appendChild(timeWrap);
+                container.appendChild(block);
+            });
         }
 
         function getServicePrice(service) {
@@ -609,30 +736,33 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function updateSummary() {
-            const typeLabel = bookingData.type || 'Private';
-            let serviceLabel = bookingData.service || 'English';
-            const isPersonalDev = serviceLabel === 'Personal Development';
-            const suffix = isPersonalDev ? 'Session' : 'Tutoring';
-            let price = getServicePrice(serviceLabel);
             const lang = document.documentElement.getAttribute('lang') || 'en';
-            const sessionLabel = lang === 'hu' ? 'foglalkozás' : 'session';
-            if (isPersonalDev && bookingData.pdOptions.length > 0) {
-                price = bookingData.pdOptions.length * 50;
-                const optionsText = bookingData.pdOptions.map(opt => {
-                    const btn = document.querySelector(`.pd-option[data-pd-option="${opt}"] span[data-en]`);
-                    if (!btn) return opt;
-                    return (lang === 'hu' ? btn.getAttribute('data-hu') : btn.getAttribute('data-en')) || opt;
-                }).join(' + ');
-                const pdName = lang === 'hu' ? 'Személyes Fejlődés' : 'Personal Development';
-                serviceLabel = `${pdName}: ${optionsText}`;
-            }
-            document.getElementById('summary-service').innerText = `${serviceLabel} ${suffix} (${typeLabel})`;
-            document.getElementById('summary-date').innerText = bookingData.date || 'Oct 16, 2024';
-            document.getElementById('summary-time').innerText = bookingData.time || '01:00 PM';
-            document.getElementById('summary-rate').innerText = isPersonalDev && bookingData.pdOptions.length > 0
-                ? `£50 × ${bookingData.pdOptions.length}`
-                : `£${price} / ${sessionLabel}`;
-            document.getElementById('summary-total').innerText = `£${price}`;
+            const itemsWrap = document.getElementById('summary-items');
+            if (!itemsWrap) return;
+            itemsWrap.innerHTML = '';
+            const typeLabel = lang === 'hu'
+                ? (bookingData.type === 'Corporate' ? 'Vállalati' : 'Magán')
+                : (bookingData.type || 'Private');
+            const noDate = lang === 'hu' ? 'nincs dátum' : 'no date';
+            const noTime = lang === 'hu' ? 'nincs időpont' : 'no time';
+            let total = 0;
+            getBookingItems().forEach(item => {
+                const slot = bookingData.slots[item] || {};
+                const price = itemPrice(item);
+                total += price;
+                const row = document.createElement('div');
+                row.className = 'flex flex-col md:flex-row md:justify-between md:items-center gap-1 border-b border-on-background/20 pb-2';
+                const left = document.createElement('span');
+                left.className = 'font-bold';
+                left.textContent = itemLabel(item, lang) + ' (' + typeLabel + ')';
+                const right = document.createElement('span');
+                right.className = 'font-label-caps text-label-caps text-on-surface-variant';
+                right.textContent = (slot.date || noDate) + ' · ' + (slot.time || noTime) + ' · £' + price;
+                row.appendChild(left);
+                row.appendChild(right);
+                itemsWrap.appendChild(row);
+            });
+            document.getElementById('summary-total').innerText = '£' + total;
         }
 
         function restoreBookingUI() {
