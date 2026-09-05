@@ -624,13 +624,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function getSlot(item) {
-            if (!bookingData.slots[item]) bookingData.slots[item] = { dates: [], times: [] };
+            if (!bookingData.slots[item]) bookingData.slots[item] = { dates: [], timesByDate: {} };
             const s = bookingData.slots[item];
-            // migrate legacy single-value format
-            if (s.date && !s.dates) { s.dates = [s.date]; delete s.date; }
-            if (s.time && !s.times) { s.times = [s.time]; delete s.time; }
+            // migrate legacy formats
+            if (s.date) { if (!Array.isArray(s.dates)) s.dates = []; if (s.dates.indexOf(s.date) < 0) s.dates.push(s.date); delete s.date; }
+            if (s.time || s.times) { delete s.time; delete s.times; }
             if (!Array.isArray(s.dates)) s.dates = [];
-            if (!Array.isArray(s.times)) s.times = [];
+            if (!s.timesByDate || typeof s.timesByDate !== 'object') s.timesByDate = {};
             return s;
         }
 
@@ -688,15 +688,77 @@ document.addEventListener('DOMContentLoaded', function () {
         function selectSlotDate(item, dateStr, btn) {
             const slot = getSlot(item);
             toggleInList(slot.dates, dateStr);
+            // keep dates sorted chronologically
+            slot.dates.sort((a, b) => new Date(a) - new Date(b));
+            if (slot.dates.indexOf(dateStr) < 0) delete slot.timesByDate[dateStr];
             persistBooking();
             btn.classList.toggle('selected-pink', slot.dates.indexOf(dateStr) >= 0);
+            const scope = btn.closest('.schedule-item');
+            if (scope) renderTimesArea(item, scope);
         }
 
-        function selectSlotTime(item, timeStr, btn) {
+        function selectSlotTime(item, dateStr, timeStr, btn) {
             const slot = getSlot(item);
-            toggleInList(slot.times, timeStr);
+            slot.timesByDate[dateStr] = timeStr;
             persistBooking();
-            btn.classList.toggle('selected-pink', slot.times.indexOf(timeStr) >= 0);
+            const row = btn.closest('.time-row');
+            if (row) row.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected-pink'));
+            btn.classList.add('selected-pink');
+        }
+
+        function renderTimesArea(item, block) {
+            const lang = document.documentElement.getAttribute('lang') || 'en';
+            const slot = getSlot(item);
+            let area = block.querySelector('.times-area');
+            if (!area) {
+                area = document.createElement('div');
+                area.className = 'times-area flex flex-col gap-3';
+                block.appendChild(area);
+            }
+            area.innerHTML = '';
+            if (!slot.dates.length) {
+                const p = document.createElement('p');
+                p.className = 'font-body-md text-[12px] text-on-surface-variant italic';
+                p.setAttribute('data-en', 'Pick one or more dates above — a time chooser will appear for each date here.');
+                p.setAttribute('data-hu', 'Válasszon egy vagy több dátumot fent — minden dátumhoz megjelenik egy időpontválasztó itt.');
+                p.textContent = lang === 'hu'
+                    ? 'Válasszon egy vagy több dátumot fent — minden dátumhoz megjelenik egy időpontválasztó itt.'
+                    : 'Pick one or more dates above — a time chooser will appear for each date here.';
+                area.appendChild(p);
+                return;
+            }
+            slot.dates.forEach(d => {
+                const row = document.createElement('div');
+                row.className = 'time-row border-2 border-on-background bg-surface p-3 flex flex-col gap-2';
+                const head = document.createElement('div');
+                head.className = 'flex items-center gap-2 flex-wrap';
+                const tag = document.createElement('span');
+                tag.className = 'font-label-caps text-[10px] uppercase bg-primary-fixed text-on-background border-2 border-on-background px-2 py-0.5';
+                tag.textContent = itemLabel(item, lang);
+                head.appendChild(tag);
+                const dl = document.createElement('span');
+                dl.className = 'font-bold text-[14px] text-on-background';
+                dl.textContent = d;
+                head.appendChild(dl);
+                row.appendChild(head);
+                const grid = document.createElement('div');
+                grid.className = 'grid grid-cols-2 md:grid-cols-4 gap-2';
+                TIME_SLOTS.forEach(t => {
+                    const tb = document.createElement('button');
+                    tb.type = 'button';
+                    tb.textContent = t;
+                    if (DISABLED_TIMES.indexOf(t) >= 0) {
+                        tb.className = 'p-2 text-[13px] border-2 border-outline-variant bg-surface-container-high text-outline line-through cursor-not-allowed';
+                        tb.disabled = true;
+                    } else {
+                        tb.className = 'time-btn p-2 text-[13px] border-2 border-on-background bg-surface hover:bg-secondary-container transition-all duration-300 font-bold' + (slot.timesByDate[d] === t ? ' selected-pink' : '');
+                        tb.onclick = (function (itemName, dv, tv, b) { return function () { selectSlotTime(itemName, dv, tv, b); }; })(item, d, t, tb);
+                    }
+                    grid.appendChild(tb);
+                });
+                row.appendChild(grid);
+                area.appendChild(row);
+            });
         }
 
         function buildScheduleUI() {
@@ -716,11 +778,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 block.appendChild(title);
                 const hint = document.createElement('p');
                 hint.className = 'font-body-md text-[12px] text-on-surface-variant';
-                hint.setAttribute('data-en', 'You can pick several dates and times for this activity — everything stays labelled with its name.');
-                hint.setAttribute('data-hu', 'Több dátumot és időpontot is választhat ehhez a foglalkozáshoz — mindegyik a nevével együtt jelenik meg.');
+                hint.setAttribute('data-en', 'Pick one or more dates below — each date then gets its own time chooser, labelled with this activity.');
+                hint.setAttribute('data-hu', 'Válasszon egy vagy több dátumot lent — minden dátumhoz külön időpontválasztó tartozik, a foglalkozás nevével ellátva.');
                 hint.textContent = lang === 'hu'
-                    ? 'Több dátumot és időpontot is választhat ehhez a foglalkozáshoz — mindegyik a nevével együtt jelenik meg.'
-                    : 'You can pick several dates and times for this activity — everything stays labelled with its name.';
+                    ? 'Válasszon egy vagy több dátumot lent — minden dátumhoz külön időpontválasztó tartozik, a foglalkozás nevével ellátva.'
+                    : 'Pick one or more dates below — each date then gets its own time chooser, labelled with this activity.';
                 block.appendChild(hint);
                 const strip = document.createElement('div');
                 strip.className = 'month-strip';
@@ -729,22 +791,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     strip.appendChild(buildMonthBlock(item, dt.getFullYear(), dt.getMonth(), slot.dates));
                 }
                 block.appendChild(strip);
-                const timeWrap = document.createElement('div');
-                timeWrap.className = 'grid grid-cols-2 md:grid-cols-4 gap-3';
-                TIME_SLOTS.forEach(t => {
-                    const tb = document.createElement('button');
-                    tb.type = 'button';
-                    tb.textContent = t;
-                    if (DISABLED_TIMES.indexOf(t) >= 0) {
-                        tb.className = 'p-3 border-2 border-outline-variant bg-surface-container-high text-outline line-through cursor-not-allowed';
-                        tb.disabled = true;
-                    } else {
-                        tb.className = 'time-btn p-3 border-2 border-on-background bg-surface hover:bg-secondary-container transition-all duration-300 font-bold' + (slot.times.indexOf(t) >= 0 ? ' selected-pink' : '');
-                        tb.onclick = (function (itemName, val, b) { return function () { selectSlotTime(itemName, val, b); }; })(item, t, tb);
-                    }
-                    timeWrap.appendChild(tb);
-                });
-                block.appendChild(timeWrap);
+                renderTimesArea(item, block);
                 container.appendChild(block);
             });
         }
@@ -788,7 +835,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     left.appendChild(typeSpan);
                     const right = document.createElement('span');
                     right.className = 'font-label-caps text-label-caps text-on-surface-variant';
-                    const times = slot.times.length ? slot.times.join(' + ') : noTime;
+                    const times = slot.timesByDate[d] || noTime;
                     right.textContent = (d || noDate) + ' · ' + times + ' · £' + price;
                     row.appendChild(left);
                     row.appendChild(right);
