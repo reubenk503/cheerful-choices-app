@@ -789,23 +789,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             updatePdTotal();
 
-            document.querySelectorAll('.date-btn').forEach(btn => {
-                const dateVal = btn.getAttribute('onclick');
-                if (dateVal && bookingData.date && dateVal.includes(bookingData.date)) {
-                    btn.classList.add('selected-pink');
-                } else {
-                    btn.classList.remove('selected-pink');
-                }
-            });
-
-            document.querySelectorAll('.time-btn').forEach(btn => {
-                const timeVal = btn.getAttribute('onclick');
-                if (timeVal && bookingData.time && timeVal.includes(bookingData.time)) {
-                    btn.classList.add('selected-pink');
-                } else {
-                    btn.classList.remove('selected-pink');
-                }
-            });
+            buildScheduleUI();
         }
 
 
