@@ -706,7 +706,7 @@ document.addEventListener('DOMContentLoaded', function () {
             container.innerHTML = '';
             const now = new Date();
             getBookingItems().forEach(item => {
-                const slot = bookingData.slots[item] || {};
+                const slot = getSlot(item);
                 const block = document.createElement('div');
                 block.className = 'schedule-item border-2 border-on-background bg-surface-container-low p-4 md:p-6 flex flex-col gap-4';
                 block.setAttribute('data-schedule-item', item);
@@ -714,11 +714,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 title.className = 'font-headline-md text-[18px] md:text-[22px] text-on-background';
                 title.textContent = itemLabel(item, lang) + ' — £' + itemPrice(item);
                 block.appendChild(title);
+                const hint = document.createElement('p');
+                hint.className = 'font-body-md text-[12px] text-on-surface-variant';
+                hint.setAttribute('data-en', 'You can pick several dates and times for this activity — everything stays labelled with its name.');
+                hint.setAttribute('data-hu', 'Több dátumot és időpontot is választhat ehhez a foglalkozáshoz — mindegyik a nevével együtt jelenik meg.');
+                hint.textContent = lang === 'hu'
+                    ? 'Több dátumot és időpontot is választhat ehhez a foglalkozáshoz — mindegyik a nevével együtt jelenik meg.'
+                    : 'You can pick several dates and times for this activity — everything stays labelled with its name.';
+                block.appendChild(hint);
                 const strip = document.createElement('div');
                 strip.className = 'month-strip';
                 for (let m = 0; m < 3; m++) {
                     const dt = new Date(now.getFullYear(), now.getMonth() + m, 1);
-                    strip.appendChild(buildMonthBlock(item, dt.getFullYear(), dt.getMonth(), slot.date));
+                    strip.appendChild(buildMonthBlock(item, dt.getFullYear(), dt.getMonth(), slot.dates));
                 }
                 block.appendChild(strip);
                 const timeWrap = document.createElement('div');
