@@ -680,22 +680,23 @@ document.addEventListener('DOMContentLoaded', function () {
             return wrap;
         }
 
+        function toggleInList(list, val) {
+            const i = list.indexOf(val);
+            if (i >= 0) list.splice(i, 1); else list.push(val);
+        }
+
         function selectSlotDate(item, dateStr, btn) {
-            if (!bookingData.slots[item]) bookingData.slots[item] = {};
-            bookingData.slots[item].date = dateStr;
+            const slot = getSlot(item);
+            toggleInList(slot.dates, dateStr);
             persistBooking();
-            const scope = btn.closest('.schedule-item') || document;
-            scope.querySelectorAll('.date-btn').forEach(b => b.classList.remove('selected-pink'));
-            btn.classList.add('selected-pink');
+            btn.classList.toggle('selected-pink', slot.dates.indexOf(dateStr) >= 0);
         }
 
         function selectSlotTime(item, timeStr, btn) {
-            if (!bookingData.slots[item]) bookingData.slots[item] = {};
-            bookingData.slots[item].time = timeStr;
+            const slot = getSlot(item);
+            toggleInList(slot.times, timeStr);
             persistBooking();
-            const scope = btn.closest('.schedule-item') || document;
-            scope.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected-pink'));
-            btn.classList.add('selected-pink');
+            btn.classList.toggle('selected-pink', slot.times.indexOf(timeStr) >= 0);
         }
 
         function buildScheduleUI() {
