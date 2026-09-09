@@ -869,6 +869,7 @@ document.addEventListener('DOMContentLoaded', function () {
       b.style.background = b.getAttribute('data-glang')===lang ? 'rgba(255,255,255,.18)' : 'transparent';
     });
     try{localStorage.setItem(KEY,lang);}catch(e){}
+    if(typeof applyPlaceholders==='function') applyPlaceholders();
   }
   var saved='en'; try{saved=localStorage.getItem(KEY)||'en';}catch(e){}
   function init(){
