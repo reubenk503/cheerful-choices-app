@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- Hero Section -->
 <!-- Offerings Split Section -->
 <!-- Booking Interface Section -->
-<section class="px-mobile-margin md:px-container-padding py-section-gap relative" id="booking"><div class="max-w-4xl mx-auto bg-surface-container-lowest border-4 border-on-background p-8 md:p-12 shadow-[12px_12px_0px_0px_#333333] relative overflow-hidden min-h-[600px] fade-up scroll-anim"><div class="absolute -top-6 -right-6 bg-primary-fixed w-16 h-16 border-2 border-on-background flex items-center justify-center rotate-12 btn-shadow z-10"><span class="material-symbols-outlined text-on-background text-3xl" style="font-variation-settings: 'FILL' 1;">event_available</span></div><div class="relative w-full h-full transition-transform duration-500 ease-in-out" id="booking-steps-container"><div class="booking-step w-full" id="step-1"><h2 class="font-display-xl-mobile md:font-headline-lg text-display-xl-mobile md:text-headline-lg text-on-background mb-8 border-b-4 border-on-background pb-4 inline-block fade-up scroll-anim" data-en="1. Select Service" data-hu="1. Válasszon szolgáltatást">1. Select Service</h2><div class="flex flex-col gap-8 stagger-children scroll-anim"><div class="flex flex-col items-center gap-3"><span class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Session Type" data-hu="Foglalkozás típusa">Session Type</span><div class="type-toggle inline-flex items-center bg-surface-container-high border-2 border-on-background p-1 gap-1" role="tablist" aria-label="Session type"><button type="button" role="tab" data-type="Private" onclick="setType('Private')" class="type-btn font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-transparent" data-en="Private" data-hu="Magán">Private</button><button type="button" role="tab" data-type="Corporate" onclick="setType('Corporate')" class="type-btn font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-transparent" data-en="Corporate" data-hu="Vállalati">Corporate</button></div><p class="font-body-md text-body-md text-on-surface-variant text-center max-w-md" id="type-helper" data-en="Choose your subject. Corporate sessions cover English only." data-hu="Válasszon tantárgyat. A vállalati foglalkozások csak angol nyelvre vonatkoznak.">Choose your subject. Corporate sessions cover English only.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="services-grid"><button class="service-card card-neo bg-surface p-6 text-left flex flex-col gap-2 border-2 border-on-background hover:bg-primary-fixed transition-colors group" data-service="English" data-price="25" onclick="setBookingData('service', 'English'); updateServiceUI(this);"><span class="material-symbols-outlined text-3xl">language</span><span class="font-headline-md text-[20px]" data-en="English" data-hu="Angol">English</span><span class="font-label-caps text-label-caps text-on-surface-variant mt-1" data-en="£25 / session" data-hu="£25 / foglalkozás">£25 / session</span></button><button class="service-card card-neo bg-surface p-6 text-left flex flex-col gap-2 border-2 border-on-background hover:bg-primary-fixed transition-colors group" data-service="Chemistry" data-private-only="1" data-price="25" onclick="setBookingData('service', 'Chemistry'); updateServiceUI(this);"><span class="material-symbols-outlined text-3xl">science</span><span class="font-headline-md text-[20px]" data-en="Chemistry" data-hu="Kémia">Chemistry</span><span class="font-label-caps text-label-caps text-on-surface-variant mt-1" data-en="£25 / session" data-hu="£25 / foglalkozás">£25 / session</span></button><button class="service-card card-neo bg-surface p-6 text-left flex flex-col gap-2 border-2 border-on-background hover:bg-primary-fixed transition-colors group" data-service="Mathematics" data-private-only="1" data-price="25" onclick="setBookingData('service', 'Mathematics'); updateServiceUI(this);"><span class="material-symbols-outlined text-3xl">calculate</span><span class="font-headline-md text-[20px]" data-en="Mathematics" data-hu="Matematika">Mathematics</span><span class="font-label-caps text-label-caps text-on-surface-variant mt-1" data-en="£25 / session" data-hu="£25 / foglalkozás">£25 / session</span></button><button class="service-card card-neo bg-surface p-6 text-left flex flex-col gap-2 border-2 border-on-background hover:bg-primary-fixed transition-colors group" data-service="Personal Development" data-private-only="1" data-price="50" onclick="setBookingData('service', 'Personal Development'); updateServiceUI(this);"><span class="material-symbols-outlined text-3xl">self_improvement</span><span class="font-headline-md text-[20px]" data-en="Personal Development" data-hu="Személyes Fejlődés">Personal Development</span><span class="font-label-caps text-label-caps text-on-surface-variant mt-1" data-en="£50 / session" data-hu="£50 / foglalkozás">£50 / session</span></button></div><div id="pd-options" class="hidden border-2 border-on-background bg-surface-container-low p-6 flex flex-col gap-4"><p class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Select one or more options — £50 each, prices add up" data-hu="Válasszon egy vagy több lehetőséget — £50/db, az árak összeadódnak">Select one or more options — £50 each, prices add up</p><div class="grid grid-cols-1 md:grid-cols-3 gap-3"><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Past Life Regression" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Past Life Regression" data-hu="Múlt Élet Regresszió">Past Life Regression</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Meditation" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Meditation" data-hu="Meditáció">Meditation</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Theta Healing" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Theta Healing" data-hu="Theta Healing">Theta Healing</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="CV Writing" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="CV Writing" data-hu="Önéletrajz Írás">CV Writing</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Interview Preparation" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Interview Preparation" data-hu="Interjú Felkészítés">Interview Preparation</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Reflexology" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Reflexology" data-hu="Reflexológia">Reflexology</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button></div><p class="font-label-caps text-label-caps uppercase text-on-background" id="pd-total"></p></div><div class="flex justify-end mt-8"><button class="font-label-caps text-label-caps uppercase bg-primary text-on-primary px-8 py-4 border-2 border-on-background btn-shadow" onclick="buildScheduleUI(); document.getElementById('step-1').classList.add('hidden'); document.getElementById('step-2').classList.remove('hidden');" data-en="Next: Date &amp; Time" data-hu="Tovább: dátum és időpont">Next: Date &amp; Time</button></div></div></div><div class="booking-step w-full hidden" id="step-2"><h2 class="font-display-xl-mobile md:font-headline-lg text-display-xl-mobile md:text-headline-lg text-on-background mb-8 border-b-4 border-on-background pb-4 inline-block" data-en="2. Choose Date &amp; Time" data-hu="2. Válasszon dátumot és időpontot">2. Choose Date &amp; Time</h2><p class="font-body-md text-body-md text-on-surface-variant mb-6" data-en="Each selected session gets its own date and time. Scroll sideways to browse the months." data-hu="Minden kiválasztott foglalkozáshoz külön dátum és időpont tartozik. Görgessen oldalra a hónapok között.">Each selected session gets its own date and time. Scroll sideways to browse the months.</p><div id="schedule-container" class="flex flex-col gap-10"></div><div class="flex justify-between mt-8"><button class="font-label-caps text-label-caps uppercase border-2 border-on-background px-6 py-4" onclick="document.getElementById('step-2').classList.add('hidden'); document.getElementById('step-1').classList.remove('hidden');" data-en="Back" data-hu="Vissza">Back</button><button class="font-label-caps text-label-caps uppercase bg-primary text-on-primary px-8 py-4 border-2 border-on-background btn-shadow" onclick="buildScheduleUI(); updateSummary(); document.getElementById('step-2').classList.add('hidden'); document.getElementById('step-4').classList.remove('hidden');" data-en="Review Booking" data-hu="Foglalás áttekintése">Review Booking</button></div></div><div class="booking-step w-full hidden" id="step-4"><h2 class="font-display-xl-mobile md:font-headline-lg text-display-xl-mobile md:text-headline-lg text-on-background mb-8 border-b-4 border-on-background pb-4 inline-block" data-en="3. Confirm" data-hu="3. Megerősítés">3. Confirm</h2><div class="bg-surface-container-high border-2 border-on-background p-6 flex flex-col gap-4 mb-8"><div id="summary-items" class="flex flex-col gap-3 border-b border-on-background pb-2"></div><div class="flex justify-between items-center pt-2"><span class="font-label-caps text-label-caps uppercase" data-en="Total" data-hu="Összesen">Total</span><span class="font-headline-md text-headline-md font-bold text-primary-fixed" id="summary-total">£25</span></div></div><div class="flex flex-col-reverse md:flex-row md:justify-between gap-4"><button class="font-label-caps text-label-caps uppercase border-2 border-on-background px-6 py-4 w-full md:w-auto" onclick="document.getElementById('step-4').classList.add('hidden'); document.getElementById('step-2').classList.remove('hidden'); buildScheduleUI();" data-en="Back" data-hu="Vissza">Back</button><button class="w-full md:w-auto font-headline-md text-[24px] bg-primary-fixed text-on-background px-12 py-6 border-4 border-on-background btn-shadow font-bold uppercase tracking-wider" onclick="document.getElementById('step-4').classList.add('hidden'); document.getElementById('success-state').classList.remove('hidden');" data-en="Confirm Booking" data-hu="Foglalás megerősítése">Confirm Booking</button></div></div><div class="booking-step w-full hidden text-center py-12" id="success-state"><div class="w-24 h-24 bg-primary-fixed border-4 border-on-background rounded-full flex items-center justify-center mx-auto mb-8 rotate-12"><span class="material-symbols-outlined text-5xl">check_circle</span></div><h2 class="font-display-xl-mobile text-display-xl-mobile text-on-background mb-4" data-en="You're In!" data-hu="Sikerült!">You're In!</h2><p class="font-body-lg text-body-lg mb-8" data-en="Your session is secured. Check your inbox for the calendar invite and prep materials." data-hu="Az időpontját rögzítettük. Ellenőrizze a postaládáját a naptármeghívóért és a felkészülési anyagokért.">Your session is secured. Check your inbox for the calendar invite and prep materials.</p><button class="font-label-caps text-label-caps uppercase border-2 border-on-background px-8 py-4 hover:bg-surface-container-high" onclick="location.reload()" data-en="Book Another" data-hu="Foglaljon másikat">Book Another</button></div></div></div></section>
+<section class="px-mobile-margin md:px-container-padding py-section-gap relative" id="booking"><div class="max-w-4xl mx-auto bg-surface-container-lowest border-4 border-on-background p-8 md:p-12 shadow-[12px_12px_0px_0px_#333333] relative overflow-hidden min-h-[600px] fade-up scroll-anim"><div class="absolute -top-6 -right-6 bg-primary-fixed w-16 h-16 border-2 border-on-background flex items-center justify-center rotate-12 btn-shadow z-10"><span class="material-symbols-outlined text-on-background text-3xl" style="font-variation-settings: 'FILL' 1;">mail</span></div><div class="relative w-full h-full transition-transform duration-500 ease-in-out" id="booking-steps-container"><div class="booking-step w-full" id="step-1"><h2 class="font-display-xl-mobile md:font-headline-lg text-display-xl-mobile md:text-headline-lg text-on-background mb-8 border-b-4 border-on-background pb-4 inline-block fade-up scroll-anim" data-en="1. Select Service" data-hu="1. Válasszon szolgáltatást">1. Select Service</h2><div class="flex flex-col gap-8 stagger-children scroll-anim"><div class="flex flex-col items-center gap-3"><span class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Session Type" data-hu="Foglalkozás típusa">Session Type</span><div class="type-toggle inline-flex items-center bg-surface-container-high border-2 border-on-background p-1 gap-1" role="tablist" aria-label="Session type"><button type="button" role="tab" data-type="Private" onclick="setType('Private')" class="type-btn font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-transparent" data-en="Private" data-hu="Magán">Private</button><button type="button" role="tab" data-type="Corporate" onclick="setType('Corporate')" class="type-btn font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-transparent" data-en="Corporate" data-hu="Vállalati">Corporate</button></div><p class="font-body-md text-body-md text-on-surface-variant text-center max-w-md" id="type-helper" data-en="Choose your subject. Corporate sessions cover English only." data-hu="Válasszon tantárgyat. A vállalati foglalkozások csak angol nyelvre vonatkoznak.">Choose your subject. Corporate sessions cover English only.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="services-grid"><button class="service-card card-neo bg-surface p-6 text-left flex flex-col gap-2 border-2 border-on-background hover:bg-primary-fixed transition-colors group" data-service="English" data-price="25" onclick="setBookingData('service', 'English'); updateServiceUI(this);"><span class="material-symbols-outlined text-3xl">language</span><span class="font-headline-md text-[20px]" data-en="English" data-hu="Angol">English</span><span class="font-label-caps text-label-caps text-on-surface-variant mt-1" data-en="£25 / session" data-hu="£25 / foglalkozás">£25 / session</span></button><button class="service-card card-neo bg-surface p-6 text-left flex flex-col gap-2 border-2 border-on-background hover:bg-primary-fixed transition-colors group" data-service="Chemistry" data-private-only="1" data-price="25" onclick="setBookingData('service', 'Chemistry'); updateServiceUI(this);"><span class="material-symbols-outlined text-3xl">science</span><span class="font-headline-md text-[20px]" data-en="Chemistry" data-hu="Kémia">Chemistry</span><span class="font-label-caps text-label-caps text-on-surface-variant mt-1" data-en="£25 / session" data-hu="£25 / foglalkozás">£25 / session</span></button><button class="service-card card-neo bg-surface p-6 text-left flex flex-col gap-2 border-2 border-on-background hover:bg-primary-fixed transition-colors group" data-service="Mathematics" data-private-only="1" data-price="25" onclick="setBookingData('service', 'Mathematics'); updateServiceUI(this);"><span class="material-symbols-outlined text-3xl">calculate</span><span class="font-headline-md text-[20px]" data-en="Mathematics" data-hu="Matematika">Mathematics</span><span class="font-label-caps text-label-caps text-on-surface-variant mt-1" data-en="£25 / session" data-hu="£25 / foglalkozás">£25 / session</span></button><button class="service-card card-neo bg-surface p-6 text-left flex flex-col gap-2 border-2 border-on-background hover:bg-primary-fixed transition-colors group" data-service="Personal Development" data-private-only="1" data-price="50" onclick="setBookingData('service', 'Personal Development'); updateServiceUI(this);"><span class="material-symbols-outlined text-3xl">self_improvement</span><span class="font-headline-md text-[20px]" data-en="Personal Development" data-hu="Személyes Fejlődés">Personal Development</span><span class="font-label-caps text-label-caps text-on-surface-variant mt-1" data-en="£50 / session" data-hu="£50 / foglalkozás">£50 / session</span></button></div><div id="pd-options" class="hidden border-2 border-on-background bg-surface-container-low p-6 flex flex-col gap-4"><p class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Select one or more options — £50 each, prices add up" data-hu="Válasszon egy vagy több lehetőséget — £50/db, az árak összeadódnak">Select one or more options — £50 each, prices add up</p><div class="grid grid-cols-1 md:grid-cols-3 gap-3"><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Past Life Regression" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Past Life Regression" data-hu="Múlt Élet Regresszió">Past Life Regression</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Meditation" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Meditation" data-hu="Meditáció">Meditation</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Theta Healing" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Theta Healing" data-hu="Theta Healing">Theta Healing</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="CV Writing" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="CV Writing" data-hu="Önéletrajz Írás">CV Writing</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Interview Preparation" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Interview Preparation" data-hu="Interjú Felkészítés">Interview Preparation</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button><button type="button" class="pd-option p-4 border-2 border-on-background bg-surface hover:bg-primary-fixed transition-colors text-left flex flex-col gap-1" data-pd-option="Reflexology" onclick="togglePdOption(this)"><span class="font-headline-md text-[16px]" data-en="Reflexology" data-hu="Reflexológia">Reflexology</span><span class="font-label-caps text-label-caps text-on-surface-variant" data-en="£50" data-hu="£50">£50</span></button></div><p class="font-label-caps text-label-caps uppercase text-on-background" id="pd-total"></p></div><div class="flex justify-end mt-8"><button class="font-label-caps text-label-caps uppercase bg-primary text-on-primary px-8 py-4 border-2 border-on-background btn-shadow" onclick="showStep('step-2')" data-en="Next: Your Details" data-hu="Tovább: az Ön adatai">Next: Your Details</button></div></div></div><div class="booking-step w-full hidden" id="step-2"><h2 class="font-display-xl-mobile md:font-headline-lg text-display-xl-mobile md:text-headline-lg text-on-background mb-8 border-b-4 border-on-background pb-4 inline-block" data-en="2. Your Details" data-hu="2. Az Ön adatai">2. Your Details</h2><p class="font-body-md text-body-md text-on-surface-variant mb-6" data-en="Send your request by email — Agota replies personally to arrange the times that suit you." data-hu="Küldje el kérését e-mailben — Ágota személyesen válaszol, és egyeztetjük az Önnek megfelelő időpontokat.">Send your request by email — Agota replies personally to arrange the times that suit you.</p><div class="flex flex-col gap-5"><div class="flex flex-col gap-2"><label for="enq-name" class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Your name" data-hu="Az Ön neve">Your name</label><input type="text" id="enq-name" class="w-full border-2 border-on-background bg-surface p-3 font-body-md text-body-md" placeholder="Jane Smith" data-ph-en="Jane Smith" data-ph-hu="Kovács Anna"/></div><div class="flex flex-col gap-2"><label for="enq-email" class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Email address" data-hu="E-mail cím">Email address</label><input type="text" id="enq-email" class="w-full border-2 border-on-background bg-surface p-3 font-body-md text-body-md" placeholder="you@example.com" data-ph-en="you@example.com" data-ph-hu="on@pelda.hu"/></div><div class="flex flex-col gap-2"><label for="enq-phone" class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Phone (optional)" data-hu="Telefon (opcionális)">Phone (optional)</label><input type="text" id="enq-phone" class="w-full border-2 border-on-background bg-surface p-3 font-body-md text-body-md" placeholder="+44 7000 000000" data-ph-en="+44 7000 000000" data-ph-hu="+36 30 000 0000"/></div><div class="flex flex-col gap-2"><label for="enq-pref" class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Preferred days & times" data-hu="Kívánt napok és időpontok">Preferred days & times</label><textarea id="enq-pref" class="w-full border-2 border-on-background bg-surface p-3 font-body-md text-body-md" placeholder="e.g. weekday evenings, Saturday mornings" data-ph-en="e.g. weekday evenings, Saturday mornings" data-ph-hu="pl. hétköznap este, szombat délelőtt" rows="3"></textarea></div><div class="flex flex-col gap-2"><label for="enq-msg" class="font-label-caps text-label-caps uppercase text-on-surface-variant" data-en="Message (optional)" data-hu="Üzenet (opcionális)">Message (optional)</label><textarea id="enq-msg" class="w-full border-2 border-on-background bg-surface p-3 font-body-md text-body-md" placeholder="Anything Agota should know" data-ph-en="Anything Agota should know" data-ph-hu="Bármi, amit érdemes tudni" rows="3"></textarea></div><p class="font-body-md text-[13px] text-error hidden" id="enq-error" data-en="Please add your name, email and preferred times." data-hu="Kérjük, adja meg nevét, e-mail címét és a kívánt időpontokat.">Please add your name, email and preferred times.</p></div><div class="flex justify-between mt-8"><button class="font-label-caps text-label-caps uppercase border-2 border-on-background px-6 py-4" onclick="showStep('step-1')" data-en="Back" data-hu="Vissza">Back</button><button class="font-label-caps text-label-caps uppercase bg-primary text-on-primary px-8 py-4 border-2 border-on-background btn-shadow" onclick="goToReview()" data-en="Review Request" data-hu="Kérés áttekintése">Review Request</button></div></div><div class="booking-step w-full hidden" id="step-4"><h2 class="font-display-xl-mobile md:font-headline-lg text-display-xl-mobile md:text-headline-lg text-on-background mb-8 border-b-4 border-on-background pb-4 inline-block" data-en="3. Send Request" data-hu="3. Kérés elküldése">3. Send Request</h2><div class="bg-surface-container-high border-2 border-on-background p-6 flex flex-col gap-4 mb-8"><div id="summary-items" class="flex flex-col gap-3 border-b border-on-background pb-2"></div><div class="flex justify-between items-center pt-2"><span class="font-label-caps text-label-caps uppercase" data-en="Estimated total" data-hu="Becsült összeg">Estimated total</span><span class="font-headline-md text-headline-md font-bold text-primary-fixed" id="summary-total">£25</span></div></div><p class="font-body-md text-[13px] text-on-surface-variant mb-6" data-en="Your request goes straight to agotacsreg@gmail.com. Nothing is charged now." data-hu="Kérése közvetlenül az agotacsreg@gmail.com címre érkezik. Most nem történik fizetés.">Your request goes straight to agotacsreg@gmail.com. Nothing is charged now.</p><p class="font-body-md text-[13px] text-error hidden mb-4" id="send-error"></p><div class="flex flex-col-reverse md:flex-row md:justify-between gap-4"><button class="font-label-caps text-label-caps uppercase border-2 border-on-background px-6 py-4 w-full md:w-auto" onclick="showStep('step-2')" data-en="Back" data-hu="Vissza">Back</button><button id="send-btn" class="w-full md:w-auto font-headline-md text-[24px] bg-primary-fixed text-on-background px-12 py-6 border-4 border-on-background btn-shadow font-bold uppercase tracking-wider" onclick="submitEnquiry()" data-en="Send Email" data-hu="E-mail küldése">Send Email</button></div></div><div class="booking-step w-full hidden text-center py-12" id="success-state"><div class="w-24 h-24 bg-primary-fixed border-4 border-on-background rounded-full flex items-center justify-center mx-auto mb-8 rotate-12"><span class="material-symbols-outlined text-5xl">check_circle</span></div><h2 class="font-display-xl-mobile text-display-xl-mobile text-on-background mb-4" data-en="Request Sent!" data-hu="Kérés elküldve!">Request Sent!</h2><p class="font-body-lg text-body-lg mb-8" data-en="Your email is on its way to Agota. She will reply to confirm your times." data-hu="E-mailje úton van Ágotához. Hamarosan válaszol az időpontok megerősítéséért.">Your email is on its way to Agota. She will reply to confirm your times.</p><button class="font-label-caps text-label-caps uppercase border-2 border-on-background px-8 py-4 hover:bg-surface-container-high" onclick="location.reload()" data-en="Send Another" data-hu="Új kérés küldése">Send Another</button></div></div></div></section>
 </main>
 <!-- Footer from Shared Components -->
 <footer class="bg-background dark:bg-surface-dim w-full mt-section-gap border-t-2 border-on-background flat no shadows fade-up scroll-anim">
@@ -592,12 +592,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 : `Selected: ${count} — Total: £${total}`;
         }
 
-        const TIME_SLOTS = ['09:00 AM', '10:30 AM', '01:00 PM', '02:30 PM'];
-        const DISABLED_TIMES = ['10:30 AM'];
-        const MONTH_NAMES_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-        const MONTH_NAMES_HU = ['január','február','március','április','május','június','július','augusztus','szeptember','október','november','december'];
-        const WD_EN = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-        const WD_HU = ['H','K','Sze','Cs','P','Szo','V'];
+        const ENQUIRY_TO = 'agotacsreg@gmail.com';
+
+        function currentLang() {
+            return document.documentElement.getAttribute('lang') || 'en';
+        }
+
+        function showStep(id) {
+            ['step-1', 'step-2', 'step-4', 'success-state'].forEach(s => {
+                const el = document.getElementById(s);
+                if (el) el.classList.toggle('hidden', s !== id);
+            });
+        }
 
         function getBookingItems() {
             if (bookingData.service === 'Personal Development' && bookingData.type !== 'Corporate' && bookingData.pdOptions.length > 0) {
@@ -614,188 +620,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return item;
         }
 
-        function itemPrice(item) {
-            if (bookingData.service === 'Personal Development') return 50;
-            return getServicePrice(item);
-        }
-
-        function formatDateValue(y, m, d) {
-            return new Date(y, m, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        }
-
-        function getSlot(item) {
-            if (!bookingData.slots[item]) bookingData.slots[item] = { dates: [], timesByDate: {} };
-            const s = bookingData.slots[item];
-            // migrate legacy formats
-            if (s.date) { if (!Array.isArray(s.dates)) s.dates = []; if (s.dates.indexOf(s.date) < 0) s.dates.push(s.date); delete s.date; }
-            if (s.time || s.times) { delete s.time; delete s.times; }
-            if (!Array.isArray(s.dates)) s.dates = [];
-            if (!s.timesByDate || typeof s.timesByDate !== 'object') s.timesByDate = {};
-            return s;
-        }
-
-        function buildMonthBlock(item, year, month, selectedDates) {
-            const lang = document.documentElement.getAttribute('lang') || 'en';
-            const wrap = document.createElement('div');
-            wrap.className = 'month-block border-2 border-on-background bg-surface p-3';
-            const label = document.createElement('div');
-            label.className = 'font-label-caps text-label-caps uppercase text-on-background mb-2 text-center';
-            label.setAttribute('data-en', MONTH_NAMES_EN[month] + ' ' + year);
-            label.setAttribute('data-hu', year + '. ' + MONTH_NAMES_HU[month]);
-            label.textContent = lang === 'hu' ? (year + '. ' + MONTH_NAMES_HU[month]) : (MONTH_NAMES_EN[month] + ' ' + year);
-            wrap.appendChild(label);
-            const grid = document.createElement('div');
-            grid.className = 'grid grid-cols-7 gap-1 text-center';
-            for (let i = 0; i < 7; i++) {
-                const h = document.createElement('div');
-                h.className = 'font-label-caps text-[10px] text-on-surface-variant' + (i >= 5 ? ' text-secondary' : '');
-                h.setAttribute('data-en', WD_EN[i]);
-                h.setAttribute('data-hu', WD_HU[i]);
-                h.textContent = lang === 'hu' ? WD_HU[i] : WD_EN[i];
-                grid.appendChild(h);
-            }
-            const firstMondayIdx = (new Date(year, month, 1).getDay() + 6) % 7;
-            for (let i = 0; i < firstMondayIdx; i++) {
-                const pad = document.createElement('div');
-                grid.appendChild(pad);
-            }
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const today = new Date(); today.setHours(0, 0, 0, 0);
-            for (let d = 1; d <= daysInMonth; d++) {
-                const dateObj = new Date(year, month, d);
-                const dateStr = formatDateValue(year, month, d);
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.textContent = d;
-                if (dateObj < today) {
-                    btn.className = 'p-1.5 text-xs md:text-sm border-2 border-outline-variant bg-surface-container-high text-outline line-through cursor-not-allowed';
-                    btn.disabled = true;
-                } else {
-                    btn.className = 'date-btn p-1.5 text-xs md:text-sm border-2 border-on-background bg-surface hover:bg-primary-fixed' + (selectedDates.indexOf(dateStr) >= 0 ? ' selected-pink' : '');
-                    btn.onclick = (function (itemName, val, b) { return function () { selectSlotDate(itemName, val, b); }; })(item, dateStr, btn);
-                }
-                grid.appendChild(btn);
-            }
-            wrap.appendChild(grid);
-            return wrap;
-        }
-
-        function toggleInList(list, val) {
-            const i = list.indexOf(val);
-            if (i >= 0) list.splice(i, 1); else list.push(val);
-        }
-
-        function selectSlotDate(item, dateStr, btn) {
-            const slot = getSlot(item);
-            toggleInList(slot.dates, dateStr);
-            // keep dates sorted chronologically
-            slot.dates.sort((a, b) => new Date(a) - new Date(b));
-            if (slot.dates.indexOf(dateStr) < 0) delete slot.timesByDate[dateStr];
-            persistBooking();
-            btn.classList.toggle('selected-pink', slot.dates.indexOf(dateStr) >= 0);
-            const scope = btn.closest('.schedule-item');
-            if (scope) renderTimesArea(item, scope);
-        }
-
-        function selectSlotTime(item, dateStr, timeStr, btn) {
-            const slot = getSlot(item);
-            slot.timesByDate[dateStr] = timeStr;
-            persistBooking();
-            const row = btn.closest('.time-row');
-            if (row) row.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected-pink'));
-            btn.classList.add('selected-pink');
-        }
-
-        function renderTimesArea(item, block) {
-            const lang = document.documentElement.getAttribute('lang') || 'en';
-            const slot = getSlot(item);
-            let area = block.querySelector('.times-area');
-            if (!area) {
-                area = document.createElement('div');
-                area.className = 'times-area flex flex-col gap-3';
-                block.appendChild(area);
-            }
-            area.innerHTML = '';
-            if (!slot.dates.length) {
-                const p = document.createElement('p');
-                p.className = 'font-body-md text-[12px] text-on-surface-variant italic';
-                p.setAttribute('data-en', 'Pick one or more dates above — a time chooser will appear for each date here.');
-                p.setAttribute('data-hu', 'Válasszon egy vagy több dátumot fent — minden dátumhoz megjelenik egy időpontválasztó itt.');
-                p.textContent = lang === 'hu'
-                    ? 'Válasszon egy vagy több dátumot fent — minden dátumhoz megjelenik egy időpontválasztó itt.'
-                    : 'Pick one or more dates above — a time chooser will appear for each date here.';
-                area.appendChild(p);
-                return;
-            }
-            slot.dates.forEach(d => {
-                const row = document.createElement('div');
-                row.className = 'time-row border-2 border-on-background bg-surface p-3 flex flex-col gap-2';
-                const head = document.createElement('div');
-                head.className = 'flex items-center gap-2 flex-wrap';
-                const tag = document.createElement('span');
-                tag.className = 'font-label-caps text-[10px] uppercase bg-primary-fixed text-on-background border-2 border-on-background px-2 py-0.5';
-                tag.textContent = itemLabel(item, lang);
-                head.appendChild(tag);
-                const dl = document.createElement('span');
-                dl.className = 'font-bold text-[14px] text-on-background';
-                dl.textContent = d;
-                head.appendChild(dl);
-                row.appendChild(head);
-                const grid = document.createElement('div');
-                grid.className = 'grid grid-cols-2 md:grid-cols-4 gap-2';
-                TIME_SLOTS.forEach(t => {
-                    const tb = document.createElement('button');
-                    tb.type = 'button';
-                    tb.textContent = t;
-                    if (DISABLED_TIMES.indexOf(t) >= 0) {
-                        tb.className = 'p-2 text-[13px] border-2 border-outline-variant bg-surface-container-high text-outline line-through cursor-not-allowed';
-                        tb.disabled = true;
-                    } else {
-                        tb.className = 'time-btn p-2 text-[13px] border-2 border-on-background bg-surface hover:bg-secondary-container transition-all duration-300 font-bold' + (slot.timesByDate[d] === t ? ' selected-pink' : '');
-                        tb.onclick = (function (itemName, dv, tv, b) { return function () { selectSlotTime(itemName, dv, tv, b); }; })(item, d, t, tb);
-                    }
-                    grid.appendChild(tb);
-                });
-                row.appendChild(grid);
-                area.appendChild(row);
-            });
-        }
-
-        function buildScheduleUI() {
-            const container = document.getElementById('schedule-container');
-            if (!container) return;
-            const lang = document.documentElement.getAttribute('lang') || 'en';
-            container.innerHTML = '';
-            const now = new Date();
-            getBookingItems().forEach(item => {
-                const slot = getSlot(item);
-                const block = document.createElement('div');
-                block.className = 'schedule-item border-2 border-on-background bg-surface-container-low p-4 md:p-6 flex flex-col gap-4';
-                block.setAttribute('data-schedule-item', item);
-                const title = document.createElement('h3');
-                title.className = 'font-headline-md text-[18px] md:text-[22px] text-on-background';
-                title.textContent = itemLabel(item, lang) + ' — £' + itemPrice(item);
-                block.appendChild(title);
-                const hint = document.createElement('p');
-                hint.className = 'font-body-md text-[12px] text-on-surface-variant';
-                hint.setAttribute('data-en', 'Pick one or more dates below — each date then gets its own time chooser, labelled with this activity.');
-                hint.setAttribute('data-hu', 'Válasszon egy vagy több dátumot lent — minden dátumhoz külön időpontválasztó tartozik, a foglalkozás nevével ellátva.');
-                hint.textContent = lang === 'hu'
-                    ? 'Válasszon egy vagy több dátumot lent — minden dátumhoz külön időpontválasztó tartozik, a foglalkozás nevével ellátva.'
-                    : 'Pick one or more dates below — each date then gets its own time chooser, labelled with this activity.';
-                block.appendChild(hint);
-                const strip = document.createElement('div');
-                strip.className = 'month-strip';
-                for (let m = 0; m < 3; m++) {
-                    const dt = new Date(now.getFullYear(), now.getMonth() + m, 1);
-                    strip.appendChild(buildMonthBlock(item, dt.getFullYear(), dt.getMonth(), slot.dates));
-                }
-                block.appendChild(strip);
-                renderTimesArea(item, block);
-                container.appendChild(block);
-            });
-        }
-
         function getServicePrice(service) {
             const btn = document.querySelector(`.service-card[data-service="${service}"]`);
             if (!btn) return 25;
@@ -803,46 +627,180 @@ document.addEventListener('DOMContentLoaded', function () {
             return isNaN(price) ? 25 : price;
         }
 
+        function itemPrice(item) {
+            if (bookingData.service === 'Personal Development') return 50;
+            return getServicePrice(item);
+        }
+
+        function applyPlaceholders() {
+            const lang = currentLang();
+            document.querySelectorAll('[data-ph-en]').forEach(el => {
+                el.setAttribute('placeholder', (lang === 'hu' ? el.getAttribute('data-ph-hu') : el.getAttribute('data-ph-en')) || '');
+            });
+        }
+
+        function readEnquiry() {
+            const val = id => {
+                const el = document.getElementById(id);
+                return el ? el.value.trim() : '';
+            };
+            return {
+                name: val('enq-name'),
+                email: val('enq-email'),
+                phone: val('enq-phone'),
+                preferred: val('enq-pref'),
+                message: val('enq-msg')
+            };
+        }
+
+        function goToReview() {
+            const d = readEnquiry();
+            const err = document.getElementById('enq-error');
+            const valid = d.name && /.+@.+\..+/.test(d.email) && d.preferred;
+            if (!valid) {
+                if (err) err.classList.remove('hidden');
+                return;
+            }
+            if (err) err.classList.add('hidden');
+            updateSummary();
+            showStep('step-4');
+        }
+
         function updateSummary() {
-            const lang = document.documentElement.getAttribute('lang') || 'en';
+            const lang = currentLang();
             const itemsWrap = document.getElementById('summary-items');
             if (!itemsWrap) return;
             itemsWrap.innerHTML = '';
+            const d = readEnquiry();
             const typeLabel = lang === 'hu'
                 ? (bookingData.type === 'Corporate' ? 'Vállalati' : 'Magán')
                 : (bookingData.type || 'Private');
-            const noDate = lang === 'hu' ? 'nincs dátum' : 'no date';
-            const noTime = lang === 'hu' ? 'nincs időpont' : 'no time';
             let total = 0;
             getBookingItems().forEach(item => {
-                const slot = getSlot(item);
                 const price = itemPrice(item);
-                const name = itemLabel(item, lang);
-                const dates = slot.dates.length ? slot.dates : [null];
-                // One row per chosen date, each labelled with its activity.
-                dates.forEach(d => {
-                    total += price;
-                    const row = document.createElement('div');
-                    row.className = 'flex flex-col md:flex-row md:justify-between md:items-center gap-1 border-b border-on-background/20 pb-2';
-                    const left = document.createElement('span');
-                    left.className = 'font-bold flex items-center gap-2 flex-wrap';
-                    const tag = document.createElement('span');
-                    tag.className = 'font-label-caps text-[10px] uppercase bg-primary-fixed text-on-background border-2 border-on-background px-2 py-0.5';
-                    tag.textContent = name;
-                    left.appendChild(tag);
-                    const typeSpan = document.createElement('span');
-                    typeSpan.textContent = '(' + typeLabel + ')';
-                    left.appendChild(typeSpan);
-                    const right = document.createElement('span');
-                    right.className = 'font-label-caps text-label-caps text-on-surface-variant';
-                    const times = slot.timesByDate[d] || noTime;
-                    right.textContent = (d || noDate) + ' · ' + times + ' · £' + price;
-                    row.appendChild(left);
-                    row.appendChild(right);
-                    itemsWrap.appendChild(row);
-                });
+                total += price;
+                const row = document.createElement('div');
+                row.className = 'flex flex-col md:flex-row md:justify-between md:items-center gap-1 border-b border-on-background/20 pb-2';
+                const left = document.createElement('span');
+                left.className = 'font-bold flex items-center gap-2 flex-wrap';
+                const tag = document.createElement('span');
+                tag.className = 'font-label-caps text-[10px] uppercase bg-primary-fixed text-on-background border-2 border-on-background px-2 py-0.5';
+                tag.textContent = itemLabel(item, lang);
+                left.appendChild(tag);
+                const typeSpan = document.createElement('span');
+                typeSpan.textContent = '(' + typeLabel + ')';
+                left.appendChild(typeSpan);
+                const right = document.createElement('span');
+                right.className = 'font-label-caps text-label-caps text-on-surface-variant';
+                right.textContent = '£' + price;
+                row.appendChild(left);
+                row.appendChild(right);
+                itemsWrap.appendChild(row);
+            });
+            const detailRows = [
+                [lang === 'hu' ? 'Név' : 'Name', d.name],
+                [lang === 'hu' ? 'E-mail' : 'Email', d.email],
+                [lang === 'hu' ? 'Telefon' : 'Phone', d.phone],
+                [lang === 'hu' ? 'Kívánt időpontok' : 'Preferred times', d.preferred],
+                [lang === 'hu' ? 'Üzenet' : 'Message', d.message]
+            ];
+            detailRows.forEach(([k, v]) => {
+                if (!v) return;
+                const row = document.createElement('div');
+                row.className = 'flex flex-col md:flex-row md:justify-between gap-1';
+                const key = document.createElement('span');
+                key.className = 'font-label-caps text-label-caps uppercase text-on-surface-variant';
+                key.textContent = k;
+                const value = document.createElement('span');
+                value.className = 'font-body-md text-body-md text-on-background md:text-right md:max-w-[60%] break-words';
+                value.textContent = v;
+                row.appendChild(key);
+                row.appendChild(value);
+                itemsWrap.appendChild(row);
             });
             document.getElementById('summary-total').innerText = '£' + total;
+        }
+
+        function buildEnquiryText() {
+            const lang = currentLang();
+            const d = readEnquiry();
+            const items = getBookingItems();
+            let total = 0;
+            const lines = items.map(item => {
+                const p = itemPrice(item);
+                total += p;
+                return '- ' + itemLabel(item, 'en') + ' (£' + p + ')';
+            });
+            return {
+                subject: 'Booking request — ' + (d.name || 'Website visitor'),
+                text: [
+                    'New booking request from the website',
+                    '',
+                    'Name: ' + d.name,
+                    'Email: ' + d.email,
+                    'Phone: ' + (d.phone || '-'),
+                    'Session type: ' + (bookingData.type || 'Private'),
+                    '',
+                    'Requested sessions:',
+                    lines.join('\n'),
+                    'Estimated total: £' + total,
+                    '',
+                    'Preferred days & times:',
+                    d.preferred,
+                    '',
+                    'Message:',
+                    d.message || '-',
+                    '',
+                    'Page language: ' + lang
+                ].join('\n')
+            };
+        }
+
+        function mailtoFallback(payload) {
+            const href = 'mailto:' + ENQUIRY_TO
+                + '?subject=' + encodeURIComponent(payload.subject)
+                + '&body=' + encodeURIComponent(payload.text);
+            window.location.href = href;
+        }
+
+        async function submitEnquiry() {
+            const btn = document.getElementById('send-btn');
+            const errEl = document.getElementById('send-error');
+            const lang = currentLang();
+            const payload = Object.assign(buildEnquiryText(), readEnquiry());
+            if (errEl) errEl.classList.add('hidden');
+            if (btn) {
+                btn.disabled = true;
+                btn.style.opacity = '0.6';
+                btn.textContent = lang === 'hu' ? 'Küldés...' : 'Sending...';
+            }
+            let sent = false;
+            try {
+                const res = await fetch('/api/public/booking-request', {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                sent = res.ok;
+            } catch (e) {
+                sent = false;
+            }
+            if (btn) {
+                btn.disabled = false;
+                btn.style.opacity = '';
+                btn.textContent = lang === 'hu' ? 'E-mail küldése' : 'Send Email';
+            }
+            if (sent) {
+                showStep('success-state');
+            } else {
+                if (errEl) {
+                    errEl.textContent = lang === 'hu'
+                        ? 'Az automatikus küldés nem sikerült — megnyitjuk az e-mail alkalmazását az elkészített üzenettel.'
+                        : 'Automatic sending failed — opening your email app with the message ready to send.';
+                    errEl.classList.remove('hidden');
+                }
+                mailtoFallback(payload);
+            }
         }
 
         function restoreBookingUI() {
@@ -868,8 +826,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 btn.classList.toggle('selected-pink', pdActive && bookingData.pdOptions.indexOf(opt) >= 0);
             });
             updatePdTotal();
-
-            buildScheduleUI();
+            applyPlaceholders();
         }
 
 
@@ -912,6 +869,7 @@ document.addEventListener('DOMContentLoaded', function () {
       b.style.background = b.getAttribute('data-glang')===lang ? 'rgba(255,255,255,.18)' : 'transparent';
     });
     try{localStorage.setItem(KEY,lang);}catch(e){}
+    if(typeof applyPlaceholders==='function') applyPlaceholders();
   }
   var saved='en'; try{saved=localStorage.getItem(KEY)||'en';}catch(e){}
   function init(){
