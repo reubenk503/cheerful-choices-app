@@ -14,6 +14,7 @@ import { Route as DevelopmentRouteImport } from './routes/development'
 import { Route as CoachingRouteImport } from './routes/coaching'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicBookingRequestRouteImport } from './routes/api/public/booking-request'
 
 const TestimonialsRoute = TestimonialsRouteImport.update({
   id: '/testimonials',
@@ -40,6 +41,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBookingRequestRoute = ApiPublicBookingRequestRouteImport.update({
+  id: '/api/public/booking-request',
+  path: '/api/public/booking-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
   '/testimonials': typeof TestimonialsRoute
+  '/api/public/booking-request': typeof ApiPublicBookingRequestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
   '/testimonials': typeof TestimonialsRoute
+  '/api/public/booking-request': typeof ApiPublicBookingRequestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +70,25 @@ export interface FileRoutesById {
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
   '/testimonials': typeof TestimonialsRoute
+  '/api/public/booking-request': typeof ApiPublicBookingRequestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/book' | '/coaching' | '/development' | '/testimonials'
+  fullPaths:
+    | '/'
+    | '/book'
+    | '/coaching'
+    | '/development'
+    | '/testimonials'
+    | '/api/public/booking-request'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/book' | '/coaching' | '/development' | '/testimonials'
+  to:
+    | '/'
+    | '/book'
+    | '/coaching'
+    | '/development'
+    | '/testimonials'
+    | '/api/public/booking-request'
   id:
     | '__root__'
     | '/'
@@ -75,6 +96,7 @@ export interface FileRouteTypes {
     | '/coaching'
     | '/development'
     | '/testimonials'
+    | '/api/public/booking-request'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,6 +105,7 @@ export interface RootRouteChildren {
   CoachingRoute: typeof CoachingRoute
   DevelopmentRoute: typeof DevelopmentRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  ApiPublicBookingRequestRoute: typeof ApiPublicBookingRequestRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -122,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/booking-request': {
+      id: '/api/public/booking-request'
+      path: '/api/public/booking-request'
+      fullPath: '/api/public/booking-request'
+      preLoaderRoute: typeof ApiPublicBookingRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -131,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   CoachingRoute: CoachingRoute,
   DevelopmentRoute: DevelopmentRoute,
   TestimonialsRoute: TestimonialsRoute,
+  ApiPublicBookingRequestRoute: ApiPublicBookingRequestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
