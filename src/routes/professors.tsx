@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import html from "../screens/testimonials.html?raw";
+import html from "../screens/professors.html?raw";
 
-export const Route = createFileRoute("/testimonials")({
+export const Route = createFileRoute("/professors")({
   server: {
     handlers: {
       GET: () =>
