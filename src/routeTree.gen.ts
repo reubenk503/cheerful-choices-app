@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as ProfessorsRouteImport } from './routes/professors'
 import { Route as DevelopmentRouteImport } from './routes/development'
 import { Route as CoachingRouteImport } from './routes/coaching'
 import { Route as BookRouteImport } from './routes/book'
@@ -19,6 +20,11 @@ import { Route as ApiPublicBookingRequestRouteImport } from './routes/api/public
 const TestimonialsRoute = TestimonialsRouteImport.update({
   id: '/testimonials',
   path: '/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfessorsRoute = ProfessorsRouteImport.update({
+  id: '/professors',
+  path: '/professors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DevelopmentRoute = DevelopmentRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/book': typeof BookRoute
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
+  '/professors': typeof ProfessorsRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/public/booking-request': typeof ApiPublicBookingRequestRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/book': typeof BookRoute
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
+  '/professors': typeof ProfessorsRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/public/booking-request': typeof ApiPublicBookingRequestRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/book': typeof BookRoute
   '/coaching': typeof CoachingRoute
   '/development': typeof DevelopmentRoute
+  '/professors': typeof ProfessorsRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/public/booking-request': typeof ApiPublicBookingRequestRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/coaching'
     | '/development'
+    | '/professors'
     | '/testimonials'
     | '/api/public/booking-request'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/coaching'
     | '/development'
+    | '/professors'
     | '/testimonials'
     | '/api/public/booking-request'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/coaching'
     | '/development'
+    | '/professors'
     | '/testimonials'
     | '/api/public/booking-request'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   BookRoute: typeof BookRoute
   CoachingRoute: typeof CoachingRoute
   DevelopmentRoute: typeof DevelopmentRoute
+  ProfessorsRoute: typeof ProfessorsRoute
   TestimonialsRoute: typeof TestimonialsRoute
   ApiPublicBookingRequestRoute: typeof ApiPublicBookingRequestRoute
 }
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/testimonials'
       fullPath: '/testimonials'
       preLoaderRoute: typeof TestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/professors': {
+      id: '/professors'
+      path: '/professors'
+      fullPath: '/professors'
+      preLoaderRoute: typeof ProfessorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/development': {
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookRoute: BookRoute,
   CoachingRoute: CoachingRoute,
   DevelopmentRoute: DevelopmentRoute,
+  ProfessorsRoute: ProfessorsRoute,
   TestimonialsRoute: TestimonialsRoute,
   ApiPublicBookingRequestRoute: ApiPublicBookingRequestRoute,
 }
